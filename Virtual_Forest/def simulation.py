@@ -9,7 +9,7 @@ from dateutil.parser import parse
 from datetime import datetime, timedelta
 
 def delete_wake_files():
-    for filename in ["wake.json", "wake_realm.json"]:
+    for filename in ["wake.json", "wake_realm.json", "wake_obtained_scroll.json", "wake_awakening.json", "wake_date.json", "wake_knowledge.json"]:
         try:
             os.remove(filename)
         except OSError:
@@ -32,17 +32,6 @@ def parse_timestamp(timestamp_str):
         return parse(timestamp_str)
     else:
         return None
-
-def write_to_wake(filename, data):
-    """Writes data to a JSON file in the wake folder"""
-    os.makedirs('wake', exist_ok=True)
-    with open(os.path.join('wake', filename), 'w') as f:
-        json.dump(data, f)
-
-def read_from_wake(filename):
-    """Reads data from a JSON file in the wake folder"""
-    with open(os.path.join('wake', filename), 'r') as f:
-        return json.load(f)
 
 # Define Destiny class
 class Destiny:
