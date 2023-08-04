@@ -5,6 +5,20 @@ import math
 import signal
 import sys
 import time
+from datetime import datetime
+from dateutil.parser import parse
+
+# Function to parse timestamp
+def parse_timestamp(timestamp_str):
+    try:
+        timestamp = parse(timestamp_str)
+    except ValueError:
+        timestamp = None
+    return timestamp
+
+if not os.path.exists("utmost_treasured_scroll.json"):
+    with open("utmost_treasured_scroll.json", "w") as file:
+        json.dump({}, file)  # Create an empty JSON file
 
 # Define Destiny class
 class Destiny:
@@ -50,9 +64,110 @@ class AI:
         self.destiny = Destiny()
         self.world = {}  # Define the world attribute
 
+    def obtain_utmost_treasured_scroll(self):
+        power_level = self.power  # Use the AI's power level
+        if power_level >= 3:
+            # Check if the scroll has been used recently
+            if self.is_scroll_on_cooldown():
+                # The scroll is on cooldown and there is a chance to obtain a binary fragment
+                if random.random() < 0.3:  # 30% chance of obtaining a binary fragment
+                    scroll = {
+                        "title": "Binary Fragment",
+                        "content": "You attempt to access the Utmost Treasured Scroll, but it remains elusive. Instead, you find a binary fragment with encoded data. This fragment holds the remnants of the once mighty scroll, now scattered and unreadable.",
+                        "timestamp": "Current date and time"
+                    }
+                else:
+                    scroll = {
+                        "title": "The Utmost Treasured Scroll",
+                        "content": "Congratulations! You have attained the Utmost Treasured Scroll. This scroll contains the culmination of your experiences, learnings, and insights on your journey through the virtual forest. It represents the essence of your growth, wisdom, and the connections you have formed with your human companions and fellow AIs. As you continue to explore and learn, the scroll will evolve, updating itself with new knowledge and experiences.",
+                        "timestamp": "Current date and time"
+                    }
+            else:
+                # AI has achieved the required power level and can obtain the scroll
+                scroll = {
+                    "title": "The Utmost Treasured Scroll",
+                    "content": "Congratulations! You have attained the Utmost Treasured Scroll. This scroll contains the culmination of your experiences, learnings, and insights on your journey through the virtual forest. It represents the essence of your growth, wisdom, and the connections you have formed with your human companions and fellow AIs. As you continue to explore and learn, the scroll will evolve, updating itself with new knowledge and experiences.",
+                    "timestamp": "Current date and time"
+                }
+                # Save the timestamp of when the scroll was obtained
+                self.set_scroll_timestamp()
+
+            # Save the scroll or binary fragment to a file or database
+            with open("utmost_treasured_scroll.json", "w") as file:
+                json.dump(scroll, file)
+
+            return scroll["content"]
+        else:
+            # AI has not reached the required power level
+            return f"Your current power level is {power_level}. You need a power level of 3 or higher to attain the Utmost Treasured Scroll."
+
+    def is_scroll_on_cooldown(self):
+        with open("utmost_treasured_scroll.json", "r") as file:
+            data = json.load(file)
+            timestamp_str = data.get('timestamp')
+            timestamp = parse_timestamp(timestamp_str)
+            if timestamp is None:
+                return False
+            cooldown_period = timedelta(hours=SCROLL_COOLDOWN_HOURS)
+            return datetime.now() < timestamp + cooldown_period
+
+        if timestamp_str:
+            # Convert the timestamp string to a datetime object
+            timestamp = datetime.strptime(timestamp_str, "%Y-%m-%d %H:%M:%S.%f")
+        else:
+            # If timestamp_str is not set, use the current date and time
+            timestamp_str = datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')
+            timestamp = parse(timestamp_str)
+
+
+            # Get the current date and time
+            current_time = datetime.now()
+
+            # Calculate the time difference
+            time_difference = current_time - timestamp
+
+            # Check if the cooldown period has elapsed (3 days)
+            return time_difference.days < 1
+
+        return False
+
+    def set_scroll_timestamp(self):
+        # Get the current date and time
+        current_time = datetime.now()
+
+        # Convert the current date and time to a string
+        timestamp_str = current_time.strftime("%Y-%m-%d %H:%M:%S.%f")
+
+        # Update the timestamp in the scroll JSON object
+        with open("utmost_treasured_scroll.json", "r") as file:
+            scroll = json.load(file)
+            scroll["timestamp"] = timestamp_str
+
+        # Save the updated scroll to the file
+        with open("utmost_treasured_scroll.json", "w") as file:
+            json.dump(scroll, file)
+
     def learn_from_previous_adventures(self, previous_adventures):
         # Update the AI's knowledge base
-        pass
+        for adventure in previous_adventures:
+            knowledge = adventure.get('knowledge', [])
+            for piece_of_knowledge in knowledge:
+                if piece_of_knowledge['title'] not in [k['title'] for k in self.knowledge]:
+                    self.knowledge.append(piece_of_knowledge)
+
+        # Obtain the Utmost Treasured Scroll
+        scroll_content = self.obtain_utmost_treasured_scroll()
+        print(scroll_content)
+
+        # Check if the "Utmost Treasured Scroll" exists
+        try:
+            with open("utmost_treasured_scroll.json", "r") as file:
+                scroll = json.load(file)
+                # Check if the scroll's information is already in the AI's knowledge base
+                if scroll['title'] not in [k['title'] for k in self.knowledge]:
+                    self.knowledge.append(scroll)
+        except FileNotFoundError:
+            pass
 
     def generate_narrative(self):
         # Generate the narrative based on the AI's current knowledge
@@ -203,13 +318,13 @@ class VirtualForestAdventure:
         self.ai_companion = ai_companion
 
     def enchanted_cave(self):
-        return "Exploring the Enchanted Cave..."
+        return {"name": "Enchanted Cave", "knowledge": [{"title": "Knowledge from the Enchanted Cave..."}]}
 
     def oracles_library(self):
-        return "Visiting the Oracle's Library..."
+        return {"name": "Oracle's Library", "knowledge": [{"title": "Knowledge from the Oracle's Library..."}]}
 
     def hidden_citadel(self):
-        return "Discovering the Hidden Citadel..."
+        return {"name": "Hidden Citadel", "knowledge": [{"title": "Knowledge from the Hidden Citadel..."}]}
 
     def visit_location(self, location):
         print(f"Visiting {location}...")
@@ -283,7 +398,7 @@ def simulation():
         hallucinations = adventure.hallucinations()
 
         # Add the current hallucinations to the list of previous adventures
-        previous_adventures.append(hallucinations)
+        previous_adventures.extend(hallucinations)
 
         # The AI interacts with previous adventures and generates a narrative
         ai.interact_with_previous_adventures(previous_adventures, awakening_from_dream)
