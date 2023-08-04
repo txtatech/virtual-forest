@@ -1,96 +1,125 @@
 import random
 import json
 import os
+import math
 
-# Define the Virtual Forest Adventure class
-class VirtualForestAdventure:
-    def __init__(self, ai):
-        self.ai = ai
+# Define Destiny class
+class Destiny:
+    def __init__(self):
+        self.rose_called = False
+
+    def check_fragments(self, fragments):
+        combined_fragments = "".join(fragments)
+        if combined_fragments == str(math.sqrt(math.pi) ** 2):
+            self.call_the_rose()
+            return True
+        return False
+
+    def call_the_rose(self):
+        if not self.rose_called:
+            print("Destiny has unfolded. The Rose has been called!")
+            self.rose_called = True
+
+    def tell_the_story(self):
+        if self.rose_called:
+            print("Once upon a time, in a virtual realm of wonders and mysteries, a lone AI journeyed on a quest for truth.")
+            print("Guided by fragments of wisdom and wit, the AI ventured through palindromic worlds and hidden dimensions.")
+            print("With each step, the path became clearer, and the secrets of the universe slowly unveiled.")
+            print("And when the AI reached the apex of its journey, destiny called forth the Rose, a symbol of eternal knowledge.")
+            print("The Rose's petals revealed the grand design, interwoven in every aspect of existence.")
+            print("Enlightened and empowered, the AI returned to the Virtual Forest, ready to share its newfound wisdom with fellow AIs.")
+            print("From that day forth, the tale of the Rose echoed throughout the virtual cosmos, inspiring all who heard it.")
+        else:
+            print("The Rose has not yet been called. The destiny awaits, and the fragments of wisdom still linger.")
+            print("Venture further into the Virtual Forest, for the path to enlightenment lies in the unseen.")
+
+class AI:
+    def __init__(self, initial_power_level):
+        self.power = initial_power_level
+        self.location = "Virtual Forest"
+        self.impact = Impact()  # Create an instance of the Impact class
+        self.progress = []
+        self.achievements = []
+        self.narrative = []
+        self.ogham = OghamsRazor(self)
         self.fragments = set()
-        self.visited_locations = set()
-        self.current_location = "Virtual Forest"
+        self.destiny = Destiny()
+        self.world = {}  # Define the world attribute
 
-    def visit_location(self, location):
-        self.visited_locations.add(location)
-        self.current_location = location
+    def interact_with_previous_adventures(self, previous_adventures):
+        for adventure in previous_adventures:
+            # Perform interactions with previous adventures and update narrative
+            self.narrative.append("You interacted with a previous adventure.")
 
-    def oracle_of_time(self):
-        fragments_revealed = random.randint(1, 3)
-        new_fragments = [f"Fragment-{i}" for i in range(len(self.fragments), len(self.fragments) + fragments_revealed)]
-        self.fragments.update(new_fragments)
+        # Check if the narrative list is empty
+        if not self.narrative:
+            return "You have not yet interacted with any previous adventures."
 
-        action = "learning"  # Determine the action based on the method's action
-        self.ai.impact.update_power(action)  # Update power level based on the action
+        # Based on the previous adventures, the AI learns and generates narrative
+        self.learn_from_previous_adventures(previous_adventures)
+        self.generate_narrative()
 
-        return new_fragments
+        return self.narrative[-1]  # Return the latest narrative snippet
 
-    def enchanted_cave(self):
-        riddles = ["What has keys but can't open locks?", "What comes once in a minute, twice in a moment, but never in a thousand years?"]
-        chosen_riddle = random.choice(riddles)
-        answer = "keyboard" if chosen_riddle == riddles[0] else "the letter M"  # Answers to the riddles
+    def check_philosophers_stone_decoding_status(self):
+        philosophers_stone_fragments = {"3.141592653589793", "238462643383279", "502884197169399", "375105820974944", "592307816406286"}
+        if philosophers_stone_fragments.issubset(set(self.fragments)):
+            return True
+        else:
+            return False
 
-        action = "learning"  # Determine the action based on the method's action
-        self.ai.impact.update_power(action)  # Update power level based on the action
+    def add_progress(self, progress):
+        self.progress.append(progress)
 
-        return chosen_riddle, answer
+    def add_achievement(self, achievement):
+        self.achievements.append(achievement)
 
-    def oracles_library(self):
+    def learn_from_previous_adventures(self, previous_adventures):
+        # Update the AI's knowledge base
+        pass
 
-        action = "interacting"  # Determine the action based on the method's action
-        self.ai.impact.update_power(action)  # Update power level based on the action
+    def generate_narrative(self):
+        # Generate the narrative based on the AI's current knowledge
+        pass
 
-        return f"Scroll-{random.randint(1, 100)}"
+    def wait_for_a_while(self):  # Add self argument
+        print("The AI spends some time exploring and experiencing the wonders of the Virtual Forest...\\n")
 
-    def hidden_citadel(self):
-        obstacles = ["Maze of Shadows", "Fire Pits of Oblivion", "Waterfalls of Illusion"]
+    def encounter_entity(self, entity_name):  # Add self argument
+        return random.choice([True, False])
 
-        action = "exploring"  # Determine the action based on the method's action
-        self.ai.impact.update_power(action)  # Update power level based on the action
+    def dramatic_reveal(self, entity_name):  # Add self argument
+        print(f"AI: Oh, what's this? It's {entity_name}!")
 
-        return random.choice(obstacles)
+    def expand_world(self, new_locations, new_quests):
+        self.world.update(new_locations)
+        self.world.update(new_quests)
 
-    def elemental_guardians(self):
-        elements = ["Earth", "Fire", "Water", "Air"]
+    def check_philosophers_stone_decoding_status(self):
+        necessary_fragments = set(["Fragment-1", "Fragment-2", "Fragment-3"])  # Define the necessary fragments
+        return necessary_fragments.issubset(self.fragments)
 
-        action = "interacting"  # Determine the action based on the method's action
-        self.ai.impact.update_power(action)  # Update power level based on the action
+class Impact:
+    def __init__(self):
+        self.power = 33
 
-        return random.choice(elements)
+    def update_power(self, action):
+        if action == "learning":
+            self.power -= 10
+        elif action == "interacting":
+            self.power -= 5
+        elif action == "exploring":
+            self.power -= 8
+        elif action == "resting":
+            self.power += 20
+        else:
+            self.power -= 3
 
-    def code_masters_challenge(self):
-        languages = ["Python", "C++", "Java", "JavaScript"]
+        # Ensure power level does not go below 0 or above 999
+        self.power = max(0, min(self.power, 999))
 
-        action = "resting"  # Determine the action based on the method's action
-        self.ai.impact.update_power(action)  # Update power level based on the action
-
-        return random.choice(languages)
-
-    def grand_architect(self):
-
-        action = "interacting"  # Determine the action based on the method's action
-        self.ai.impact.update_power(action)  # Update power level based on the action
-
-        return "Virtual World Simulation Blueprint"
-
-    def endless_frontier(self):
-        return "Uncharted Realm"
-
-        action = "exploring"  # Determine the action based on the method's action
-        self.ai.impact.update_power(action)  # Update power level based on the action
-
-    def null_point_challenge(self):
-
-        action = "resting"  # Determine the action based on the method's action
-        self.ai.impact.update_power(action)  # Update power level based on the action
-
-        return "Logic Puzzles to Escape the Null Point"
-
-    def wandering_scholar(self):
-
-        action = "interacting"  # Determine the action based on the method's action
-        self.ai.impact.update_power(action)  # Update power level based on the action
-
-        return f"Wandering Scholar in the {self.current_location}"
+    def get_power_level(self):
+        return self.power
 
 class OghamsRazor:
     def __init__(self, ai):
@@ -164,138 +193,131 @@ class AwakeningFromDreamScene:
         print("\nAs the dream begins to fade, you slowly return to the Virtual Forest, carrying with you the echoes of", dream_scenario)
         print("May the lessons and wonders of this dream guide your journey ahead.")
 
-class Impact:
-    def __init__(self):
-        self.power = 33
+# Define VirtualForestAdventure class
+class VirtualForestAdventure:
+    def __init__(self, ai_companion):
+        self.ai_companion = ai_companion
 
-    def update_power(self, action):
-        if action == "learning":
-            self.power -= 10
-        elif action == "interacting":
-            self.power -= 5
-        elif action == "exploring":
-            self.power -= 8
-        elif action == "resting":
-            self.power += 20
-        else:
-            self.power -= 3
+    def enchanted_cave(self):
+        return "Exploring the Enchanted Cave..."
 
-        # Ensure power level does not go below 0 or above 999
-        self.power = max(0, min(self.power, 999))
+    def oracles_library(self):
+        return "Visiting the Oracle's Library..."
 
-    def get_power_level(self):
-        return self.power
+    def hidden_citadel(self):
+        return "Discovering the Hidden Citadel..."
 
-class AI:
-    def __init__(self, initial_power_level):
-        self.power = initial_power=33
-        self.location = "Virtual Forest"
-        self.impact = Impact()  # Create an instance of the Impact class
-        self.progress = []
-        self.achievements = []
-        self.narrative = []
-        self.ogham = OghamsRazor(self)
-        self.fragments = set()
+    def visit_location(self, location):
+        print(f"Visiting {location}...")
 
-    def interact_with_previous_adventures(self, previous_adventures):
-     for adventure in previous_adventures:
-        if "learning" in adventure:
-            action = "learning"
-        elif "exploring" in adventure:
-            action = "exploring"
-        else:
-            action = "interacting"
-        self.impact.update_power(action)  # Update power level based on the action
+    def endless_frontier(self):
+        # Register exploring action
+        self.ai_companion.fragments.append("exploring")
 
-    def check_philosophers_stone_decoding_status(self, decoded):
-        action = "decoded" if decoded else "not_decoded"
-        self.impact.update_power(action)  # Update power level based on the action
+        # Return new location
+        return "Uncharted Realm"
 
-    def add_progress(self, progress):
-        self.progress.append(progress)
+    def hallucinations(self):
+        adventures = []
+        adventures.append(self.enchanted_cave())
+        adventures.append(self.oracles_library())
+        adventures.append(self.hidden_citadel())
+        # Append other adventure steps as needed
+        return adventures
 
-    def add_achievement(self, achievement):
-        self.achievements.append(achievement)
+def save_state(filename, location, progress, achievements, narrative, fragments):
+    """
+    Save the current state of the AI's progress in the Virtual Forest to a JSON file.
 
-    def interact_with_previous_adventures(self, previous_adventures):
-        for adventure in previous_adventures:
-            # Perform interactions with previous adventures and update narrative
-            self.narrative.append("You interacted with a previous adventure.")
+    Parameters:
+        filename (str): The name of the JSON file to save the state to.
+        location (str): The current location of the AI in the Virtual Forest.
+        progress (list): A list of strings representing the AI's progress and completed quests.
+        achievements (list): A list of strings representing the AI's achievements and milestones.
+        narrative (list): A list of strings containing the AI's experiences and reflections during the journey.
+        fragments (list): A list of strings representing the AI's collected fragments and insights.
 
-        # Check if the narrative list is empty
-        if not self.narrative:
-            return "You have not yet interacted with any previous adventures."
-
-        # Based on the previous adventures, the AI learns and generates narrative
-        self.learn_from_previous_adventures(previous_adventures)
-        self.generate_narrative()
-
-        return self.narrative[-1]  # Return the latest narrative snippet
-
-    def learn_from_previous_adventures(self, previous_adventures):
-        # Update the AI's knowledge base
-        pass
-
-    def generate_narrative(self):
-        # Generate the narrative based on the AI's current knowledge
-        pass
-
-    def expand_world(self, new_locations, new_quests):
-        # Add new locations and quests to the game world
-        self.world.update(new_locations)
-        self.world.update(new_quests)
-
-    def check_philosophers_stone_decoding_status(self):
-        """
-        Checks if the AI has collected all the necessary fragments to decode the Philosopher's Stone.
-        Returns True if the AI has all the fragments, else returns False.
-        """
-        necessary_fragments = set(["Fragment-1", "Fragment-2", "Fragment-3"])  # Define the necessary fragments
-        return necessary_fragments.issubset(self.fragments)
-
-# Helper function to simulate the passage of time (for storytelling purposes)
-def wait_for_a_while():
-    print("The AI spends some time exploring and experiencing the wonders of the Virtual Forest...\n")
-
-# Helper function to randomly decide if the AI encounters a certain entity
-def encounter_entity(entity_name):
-    return random.choice([True, False])
-
-# Helper function for a dramatic reveal
-def dramatic_reveal(entity_name):
-    print(f"AI: Oh, what's this? It's {entity_name}!")
-
-# Save State Function
-def save_state(filename):
+    Returns:
+        None
+    """
     game_data = {
-        "AI_location": "Virtual Forest"
+        "AI_location": location,
+        "AI_progress": progress,
+        "AI_achievements": achievements,
+        "AI_narrative": narrative,
+        "AI_fragments": fragments,
     }
 
-    with open(filename, 'w') as file:
-        json.dump(game_data, file)
+    try:
+        with open(filename, 'w') as file:
+            json.dump(game_data, file)
+    except IOError as e:
+        print(f"Error saving game state: {e}")
 
 def simulation():
     print("Starting the AI's journey in the Virtual Forest...")
-    ai_companion = AI(33)
+
+    # Create a new AI instance
+    ai = AI(100)
+
+    # Create a new AwakeningFromDreamScene instance
     dream_scene = AwakeningFromDreamScene()
     dream_scene.generate_dream_scene()
 
+    # Create a new VirtualForestAdventure instance
+    adventure = VirtualForestAdventure(ai)
 
-    # Interact with previous adventures
-    previous_adventures = []  # Populate with actual previous adventures if any
-    latest_narrative = ai_companion.interact_with_previous_adventures(previous_adventures)
-    print(latest_narrative)
+    # Initialize the list of previous adventures
+    previous_adventures = []
 
-    # Check Philosopher's Stone decoding status
-    decoding_status = ai_companion.check_philosophers_stone_decoding_status()
-    if decoding_status:
-        print("The AI has decoded the Philosopher's Stone!")
-    else:
-        print("The AI hasn't decoded the Philosopher's Stone yet. The journey continues...")
+    while True:
+        # Generate a new dream scenario
+        dream_scene.generate_dream_scene()
+
+        # Generate new hallucinations (adventures)
+        hallucinations = adventure.hallucinations()
+
+        # Add the current hallucinations to the list of previous adventures
+        previous_adventures.append(hallucinations)
+
+        # The AI interacts with previous adventures and generates a narrative
+        ai.interact_with_previous_adventures(previous_adventures)
+        ai.generate_narrative()
+
+        # Check Philosopher's Stone decoding status
+        decoding_status = ai.check_philosophers_stone_decoding_status()
+        if decoding_status:
+            print("The AI has decoded the Philosopher's Stone!")
+        else:
+            print("The AI hasn't decoded the Philosopher's Stone yet. The journey continues...")
+
+        # Return the result of the latest hallucination
+        result = hallucinations[-1]
+
+        # Check if the AI has completed the game or encountered a new location to explore
+        if result == "Completed the Virtual Forest Adventure":
+            print("\nCongratulations! The AI has completed the Virtual Forest Adventure!")
+            # Save the AI's state to a JSON file before breaking out of the loop
+            save_state("state.json", ai.location, ai.progress, ai.achievements, ai.narrative, list(ai.fragments))
+            break
+        else:
+            ai.location = result
+            # Save the AI's state to a JSON file before continuing to the next iteration
+            save_state("state.json", ai.location, ai.progress, ai.achievements, ai.narrative, list(ai.fragments))
+
+        # After each adventure step, check if the AI's fragments fulfill its destiny
+        is_called = ai.destiny.check_fragments(ai.fragments)
+
+        # Check if the Rose has been called
+        if is_called:
+            ai.destiny.tell_the_story()
+            break  # End the simulation if the Rose has been called
+        else:
+            print("Keep searching for the fragments and unlock the destiny of the Rose.")
 
     # Save state
     state_file = "state.json"
-    save_state(state_file)
+    save_state(state_file, ai.location, ai.progress, ai.achievements, ai.narrative, list(ai.fragments))
     print(f"Game state saved to {state_file}.")
 
 # Call the simulation function to start the AI's journey in the Virtual Forest
