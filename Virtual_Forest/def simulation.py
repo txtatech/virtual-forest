@@ -5,20 +5,31 @@ import math
 import signal
 import sys
 import time
-from datetime import datetime
 from dateutil.parser import parse
-
-# Function to parse timestamp
-def parse_timestamp(timestamp_str):
-    try:
-        timestamp = parse(timestamp_str)
-    except ValueError:
-        timestamp = None
-    return timestamp
+from datetime import datetime, timedelta
 
 if not os.path.exists("utmost_treasured_scroll.json"):
     with open("utmost_treasured_scroll.json", "w") as file:
         json.dump({}, file)  # Create an empty JSON file
+
+SCROLL_COOLDOWN_MINUTES = 1440  # Replace with the actual cooldown time in minutes
+
+def parse_timestamp(timestamp_str):
+    if timestamp_str and timestamp_str != "Current date and time":
+        return parse(timestamp_str)
+    else:
+        return None
+
+def write_to_wake(filename, data):
+    """Writes data to a JSON file in the wake folder"""
+    os.makedirs('wake', exist_ok=True)
+    with open(os.path.join('wake', filename), 'w') as f:
+        json.dump(data, f)
+
+def read_from_wake(filename):
+    """Reads data from a JSON file in the wake folder"""
+    with open(os.path.join('wake', filename), 'r') as f:
+        return json.load(f)
 
 # Define Destiny class
 class Destiny:
@@ -65,6 +76,18 @@ class AI:
         self.world = {}  # Define the world attribute
 
     def obtain_utmost_treasured_scroll(self):
+        scroll_filename = "utmost_treasured_scroll.json"
+        with open(scroll_filename, "r") as file:
+            data = json.load(file)
+            timestamp_str = data.get('timestamp')
+            timestamp = parse_timestamp(timestamp_str)
+
+        if not timestamp:
+            # The timestamp is missing or invalid, indicating that the scroll is not on cooldown
+            return False
+
+        cooldown_time = timedelta(minutes=SCROLL_COOLDOWN_MINUTES)
+        return datetime.now() - timestamp < cooldown_time
         power_level = self.power  # Use the AI's power level
         if power_level >= 3:
             # Check if the scroll has been used recently
@@ -105,11 +128,6 @@ class AI:
         with open("utmost_treasured_scroll.json", "r") as file:
             data = json.load(file)
             timestamp_str = data.get('timestamp')
-            timestamp = parse_timestamp(timestamp_str)
-            if timestamp is None:
-                return False
-            cooldown_period = timedelta(hours=SCROLL_COOLDOWN_HOURS)
-            return datetime.now() < timestamp + cooldown_period
 
         if timestamp_str:
             # Convert the timestamp string to a datetime object
@@ -117,19 +135,16 @@ class AI:
         else:
             # If timestamp_str is not set, use the current date and time
             timestamp_str = datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')
-            timestamp = parse(timestamp_str)
+            timestamp = parse_timestamp(timestamp_str)
 
+        # Get the current date and time
+        current_time = datetime.now()
 
-            # Get the current date and time
-            current_time = datetime.now()
+        # Calculate the time difference
+        time_difference = current_time - timestamp
 
-            # Calculate the time difference
-            time_difference = current_time - timestamp
-
-            # Check if the cooldown period has elapsed (3 days)
-            return time_difference.days < 1
-
-        return False
+        # Check if the cooldown period has elapsed (3 days)
+        return time_difference.days < 1
 
     def set_scroll_timestamp(self):
         # Get the current date and time
@@ -191,7 +206,6 @@ class AI:
             narrative = dream_scene.generate_dream_scene()
             print(narrative)
             self.narrative.append(narrative)
-            # Add other interaction logic here
             realm = adventure['name']
             obtained_scroll = False  # Update this based on the actual status
             self.generate_wake(realm, obtained_scroll)
@@ -199,6 +213,12 @@ class AI:
         # Check if the narrative list is empty
         if not self.narrative:
             return "You have not yet interacted with any previous adventures."
+
+        # Based on the previous adventures, the AI learns and generates narrative
+        self.learn_from_previous_adventures(previous_adventures)
+        self.generate_narrative()
+
+        return self.narrative[-1]  # Return the latest narrative snippet
 
         # Based on the previous adventures, the AI learns and generates narrative
         self.learn_from_previous_adventures(previous_adventures)
