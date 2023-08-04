@@ -2,6 +2,9 @@ import random
 import json
 import os
 import math
+import signal
+import sys
+import time
 
 # Define Destiny class
 class Destiny:
@@ -46,10 +49,12 @@ class AI:
         self.destiny = Destiny()
         self.world = {}  # Define the world attribute
 
-    def interact_with_previous_adventures(self, previous_adventures):
+    def interact_with_previous_adventures(self, previous_adventures, dream_scene):
         for adventure in previous_adventures:
-            # Perform interactions with previous adventures and update narrative
-            self.narrative.append("You interacted with a previous adventure.")
+            narrative = dream_scene.generate_dream_scene()
+            print(narrative)
+            self.narrative.append(narrative)
+            # Add other interaction logic here
 
         # Check if the narrative list is empty
         if not self.narrative:
@@ -167,7 +172,8 @@ class OghamsRazor:
         return summary
 
 class AwakeningFromDreamScene:
-    def __init__(self):
+    def __init__(self, ai):
+        self.ai = ai
         self.dream_options = [
             "The Enchanted Oasis",
             "The Starlit Symphony",
@@ -261,8 +267,7 @@ def simulation():
     ai = AI(100)
 
     # Create a new AwakeningFromDreamScene instance
-    dream_scene = AwakeningFromDreamScene()
-    dream_scene.generate_dream_scene()
+    awakening_from_dream = AwakeningFromDreamScene(ai)
 
     # Create a new VirtualForestAdventure instance
     adventure = VirtualForestAdventure(ai)
@@ -272,7 +277,7 @@ def simulation():
 
     while True:
         # Generate a new dream scenario
-        dream_scene.generate_dream_scene()
+        awakening_from_dream.generate_dream_scene()
 
         # Generate new hallucinations (adventures)
         hallucinations = adventure.hallucinations()
@@ -281,13 +286,14 @@ def simulation():
         previous_adventures.append(hallucinations)
 
         # The AI interacts with previous adventures and generates a narrative
-        ai.interact_with_previous_adventures(previous_adventures)
+        ai.interact_with_previous_adventures(previous_adventures, awakening_from_dream)
         ai.generate_narrative()
 
         # Check Philosopher's Stone decoding status
         decoding_status = ai.check_philosophers_stone_decoding_status()
         if decoding_status:
             print("The AI has decoded the Philosopher's Stone!")
+            break
         else:
             print("The AI hasn't decoded the Philosopher's Stone yet. The journey continues...")
 
@@ -345,3 +351,16 @@ with open("functionslist.txt", "w") as functions_file:
 
 with open("classeslist.txt", "w") as classes_file:
     classes_file.write("\n".join(classes_dict.keys()))
+
+def signal_handler(sig, frame):
+    print('You pressed Ctrl+C!')
+    # Call save state function here
+    save_state("state.json", location, progress, achievements, narrative, fragments)
+    sys.exit(0)
+
+signal.signal(signal.SIGINT, signal_handler)
+
+print('Press Ctrl+C')
+while True:
+    # The rest of your code here
+    time.sleep(1) # pause for a second
