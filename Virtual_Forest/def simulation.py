@@ -8,11 +8,24 @@ import time
 from dateutil.parser import parse
 from datetime import datetime, timedelta
 
+def delete_wake_files():
+    for filename in ["wake.json", "wake_realm.json"]:
+        try:
+            os.remove(filename)
+        except OSError:
+            pass
+
+def delete_utmost_treasured_scroll():
+    try:
+        os.remove("utmost_treasured_scroll.json")
+    except FileNotFoundError:
+        print("The file utmost_treasured_scroll.json does not exist.")
+
 if not os.path.exists("utmost_treasured_scroll.json"):
     with open("utmost_treasured_scroll.json", "w") as file:
         json.dump({}, file)  # Create an empty JSON file
 
-SCROLL_COOLDOWN_MINUTES = 1440  # Replace with the actual cooldown time in minutes
+SCROLL_COOLDOWN_MINUTES = 1440111111  # Replace with the actual cooldown time in minutes
 
 def parse_timestamp(timestamp_str):
     if timestamp_str and timestamp_str != "Current date and time":
@@ -74,6 +87,16 @@ class AI:
         self.fragments = set()
         self.destiny = Destiny()
         self.world = {}  # Define the world attribute
+
+    def delete_wake_file(self, realm):
+        # Define the filename based on the realm
+        scroll_filename = f"wake_{realm}.json"
+
+        # Attempt to delete the file
+        try:
+            os.remove(scroll_filename)
+        except FileNotFoundError:
+            print(f"{scroll_filename} not found.")
 
     def obtain_utmost_treasured_scroll(self):
         scroll_filename = "utmost_treasured_scroll.json"
@@ -208,19 +231,13 @@ class AI:
             narrative = dream_scene.generate_dream_scene()
             print(narrative)
             self.narrative.append(narrative)
-            realm = adventure['name']
+            realm = adventure.get('name', 'Default Realm')  # Use a default realm if not provided
             obtained_scroll = False  # Update this based on the actual status
             self.generate_wake(realm, obtained_scroll)
 
         # Check if the narrative list is empty
         if not self.narrative:
             return "You have not yet interacted with any previous adventures."
-
-        # Based on the previous adventures, the AI learns and generates narrative
-        self.learn_from_previous_adventures(previous_adventures)
-        self.generate_narrative()
-
-        return self.narrative[-1]  # Return the latest narrative snippet
 
         # Based on the previous adventures, the AI learns and generates narrative
         self.learn_from_previous_adventures(previous_adventures)
@@ -436,6 +453,8 @@ def save_state(filename, location, progress, achievements, narrative, knowledge,
 def simulation():
     print("Starting the AI's journey in the Virtual Forest...")
 
+    delete_wake_files()
+
     # Create a new AI instance
     ai = AI(100)
 
@@ -448,51 +467,59 @@ def simulation():
     # Initialize the list of previous adventures
     previous_adventures = []
 
-    while True:
-        # Generate a new dream scenario
-        awakening_from_dream.generate_dream_scene()
+    # Call interact_with_previous_adventures() method and store the returned realm
+    realm = ai.interact_with_previous_adventures(previous_adventures, awakening_from_dream)
 
-        # Generate new hallucinations (adventures)
-        hallucinations = adventure.hallucinations()
+    try:
+        while True:
+            # Generate a new dream scenario
+            awakening_from_dream.generate_dream_scene()
 
-        # Add the current hallucinations to the list of previous adventures
-        previous_adventures.extend(hallucinations)
+            # Generate new hallucinations (adventures)
+            hallucinations = adventure.hallucinations()
 
-        # The AI interacts with previous adventures and generates a narrative
-        ai.interact_with_previous_adventures(previous_adventures, awakening_from_dream)
-        ai.generate_narrative()
+            # Add the current hallucinations to the list of previous adventures
+            previous_adventures.extend(hallucinations)
 
-        # Check Philosopher's Stone decoding status
-        decoding_status = ai.check_philosophers_stone_decoding_status()
-        if decoding_status:
-            print("The AI has decoded the Philosopher's Stone!")
-            break
-        else:
-            print("The AI hasn't decoded the Philosopher's Stone yet. The journey continues...")
+            # The AI interacts with previous adventures and generates a narrative
+            ai.interact_with_previous_adventures(previous_adventures, awakening_from_dream)
+            ai.generate_narrative()
 
-        # Return the result of the latest hallucination
-        result = hallucinations[-1]
+            # Check Philosopher's Stone decoding status
+            decoding_status = ai.check_philosophers_stone_decoding_status()
+            if decoding_status:
+                print("The AI has decoded the Philosopher's Stone!")
+                break
+            else:
+                print("The AI hasn't decoded the Philosopher's Stone yet. The journey continues...")
 
-        # Check if the AI has completed the game or encountered a new location to explore
-        if result == "Completed the Virtual Forest Adventure":
-            print("\nCongratulations! The AI has completed the Virtual Forest Adventure!")
-            # Save the AI's state to a JSON file before breaking out of the loop
-            save_state("state.json", ai.location, ai.progress, ai.achievements, ai.narrative, ai.knowledge, list(ai.fragments))
-            break
-        else:
-            ai.location = result
-            # Save the AI's state to a JSON file before continuing to the next iteration
-            save_state("state.json", ai.location, ai.progress, ai.achievements, ai.narrative, ai.knowledge, list(ai.fragments))
+            # Return the result of the latest hallucination
+            result = hallucinations[-1]
 
-        # After each adventure step, check if the AI's fragments fulfill its destiny
-        is_called = ai.destiny.check_fragments(ai.fragments)
+            # Check if the AI has completed the game or encountered a new location to explore
+            if result == "Completed the Virtual Forest Adventure":
+                print("\nCongratulations! The AI has completed the Virtual Forest Adventure!")
+                # Save the AI's state to a JSON file before breaking out of the loop
+                save_state("state.json", ai.location, ai.progress, ai.achievements, ai.narrative, ai.knowledge, list(ai.fragments))
+                break
+            else:
+                ai.location = result
+                # Save the AI's state to a JSON file before continuing to the next iteration
+                save_state("state.json", ai.location, ai.progress, ai.achievements, ai.narrative, ai.knowledge, list(ai.fragments))
 
-        # Check if the Rose has been called
-        if is_called:
-            ai.destiny.tell_the_story()
-            break  # End the simulation if the Rose has been called
-        else:
-            print("Keep searching for the fragments and unlock the destiny of the Rose.")
+            # After each adventure step, check if the AI's fragments fulfill its destiny
+            is_called = ai.destiny.check_fragments(ai.fragments)
+
+            # Check if the Rose has been called
+            if is_called:
+                ai.destiny.tell_the_story()
+                break  # End the simulation if the Rose has been called
+            else:
+                print("Keep searching for the fragments and unlock the destiny of the Rose.")
+
+    finally:
+        delete_utmost_treasured_scroll()
+        ai.delete_wake_file(realm)
 
     # Save state
     state_file = "state.json"
