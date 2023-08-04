@@ -87,7 +87,9 @@ class AI:
             return False
 
         cooldown_time = timedelta(minutes=SCROLL_COOLDOWN_MINUTES)
-        return datetime.now() - timestamp < cooldown_time
+        if datetime.now() - timestamp < cooldown_time:
+            return False
+
         power_level = self.power  # Use the AI's power level
         if power_level >= 3:
             # Check if the scroll has been used recently
@@ -179,7 +181,7 @@ class AI:
             with open("utmost_treasured_scroll.json", "r") as file:
                 scroll = json.load(file)
                 # Check if the scroll's information is already in the AI's knowledge base
-                if scroll['title'] not in [k['title'] for k in self.knowledge]:
+                if 'title' in scroll and scroll['title'] not in [k['title'] for k in self.knowledge]:
                     self.knowledge.append(scroll)
         except FileNotFoundError:
             pass
