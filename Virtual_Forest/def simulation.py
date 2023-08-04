@@ -192,6 +192,9 @@ class AI:
             print(narrative)
             self.narrative.append(narrative)
             # Add other interaction logic here
+            realm = adventure['name']
+            obtained_scroll = False  # Update this based on the actual status
+            self.generate_wake(realm, obtained_scroll)
 
         # Check if the narrative list is empty
         if not self.narrative:
@@ -216,6 +219,39 @@ class AI:
     def add_achievement(self, achievement):
         self.achievements.append(achievement)
 
+# Here's how you can create separate files for each attribute:
+
+    def generate_wake(self, realm, obtained_scroll):
+        # Define the data to be logged
+        data = {
+            'date': datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f'),
+            'awakening': 'The AI awakens in the virtual forest...',
+            'knowledge': self.knowledge,
+            'realm': realm,
+            'obtained_scroll': obtained_scroll
+        }
+
+        # Write each attribute to a separate file
+        for attribute, value in data.items():
+            file_name = f'wake_{attribute}.json'
+            if os.path.exists(file_name):
+                with open(file_name, 'r') as file:
+                    existing_data = json.load(file)
+                    existing_data.append(value)
+            else:
+                existing_data = [value]
+            with open(file_name, 'w') as file:
+                json.dump(existing_data, file)
+
+        # Write all data to 'wake.json'
+        if os.path.exists('wake.json'):
+            with open('wake.json', 'r') as file:
+                existing_data = json.load(file)
+                existing_data.append(data)
+        else:
+            existing_data = [data]
+        with open('wake.json', 'w') as file:
+            json.dump(existing_data, file)
 
 class Impact:
     def __init__(self):
