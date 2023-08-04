@@ -43,11 +43,33 @@ class AI:
         self.impact = Impact()  # Create an instance of the Impact class
         self.progress = []
         self.achievements = []
+        self.knowledge = []
         self.narrative = []
         self.ogham = OghamsRazor(self)
         self.fragments = set()
         self.destiny = Destiny()
         self.world = {}  # Define the world attribute
+
+    def learn_from_previous_adventures(self, previous_adventures):
+        # Update the AI's knowledge base
+        pass
+
+    def generate_narrative(self):
+        # Generate the narrative based on the AI's current knowledge
+        pass
+
+    def wait_for_a_while(self):  # Add self argument
+        print("The AI spends some time exploring and experiencing the wonders of the Virtual Forest...\\n")
+
+    def encounter_entity(self, entity_name):  # Add self argument
+        return random.choice([True, False])
+
+    def dramatic_reveal(self, entity_name):  # Add self argument
+        print(f"AI: Oh, what's this? It's {entity_name}!")
+
+    def expand_world(self, new_locations, new_quests):
+        self.world.update(new_locations)
+        self.world.update(new_quests)
 
     def interact_with_previous_adventures(self, previous_adventures, dream_scene):
         for adventure in previous_adventures:
@@ -79,30 +101,6 @@ class AI:
     def add_achievement(self, achievement):
         self.achievements.append(achievement)
 
-    def learn_from_previous_adventures(self, previous_adventures):
-        # Update the AI's knowledge base
-        pass
-
-    def generate_narrative(self):
-        # Generate the narrative based on the AI's current knowledge
-        pass
-
-    def wait_for_a_while(self):  # Add self argument
-        print("The AI spends some time exploring and experiencing the wonders of the Virtual Forest...\\n")
-
-    def encounter_entity(self, entity_name):  # Add self argument
-        return random.choice([True, False])
-
-    def dramatic_reveal(self, entity_name):  # Add self argument
-        print(f"AI: Oh, what's this? It's {entity_name}!")
-
-    def expand_world(self, new_locations, new_quests):
-        self.world.update(new_locations)
-        self.world.update(new_quests)
-
-    def check_philosophers_stone_decoding_status(self):
-        necessary_fragments = set(["Fragment-1", "Fragment-2", "Fragment-3"])  # Define the necessary fragments
-        return necessary_fragments.issubset(self.fragments)
 
 class Impact:
     def __init__(self):
@@ -231,7 +229,7 @@ class VirtualForestAdventure:
         # Append other adventure steps as needed
         return adventures
 
-def save_state(filename, location, progress, achievements, narrative, fragments):
+def save_state(filename, location, progress, achievements, narrative, knowledge, fragments):
     """
     Save the current state of the AI's progress in the Virtual Forest to a JSON file.
 
@@ -242,6 +240,7 @@ def save_state(filename, location, progress, achievements, narrative, fragments)
         achievements (list): A list of strings representing the AI's achievements and milestones.
         narrative (list): A list of strings containing the AI's experiences and reflections during the journey.
         fragments (list): A list of strings representing the AI's collected fragments and insights.
+        knowledge (list): A list of strings representing the AI's collected knowledge.
 
     Returns:
         None
@@ -252,6 +251,7 @@ def save_state(filename, location, progress, achievements, narrative, fragments)
         "AI_achievements": achievements,
         "AI_narrative": narrative,
         "AI_fragments": fragments,
+        "AI_knowledge": knowledge,
     }
 
     try:
@@ -304,12 +304,12 @@ def simulation():
         if result == "Completed the Virtual Forest Adventure":
             print("\nCongratulations! The AI has completed the Virtual Forest Adventure!")
             # Save the AI's state to a JSON file before breaking out of the loop
-            save_state("state.json", ai.location, ai.progress, ai.achievements, ai.narrative, list(ai.fragments))
+            save_state("state.json", ai.location, ai.progress, ai.achievements, ai.narrative, ai.knowledge, list(ai.fragments))
             break
         else:
             ai.location = result
             # Save the AI's state to a JSON file before continuing to the next iteration
-            save_state("state.json", ai.location, ai.progress, ai.achievements, ai.narrative, list(ai.fragments))
+            save_state("state.json", ai.location, ai.progress, ai.achievements, ai.narrative, ai.knowledge, list(ai.fragments))
 
         # After each adventure step, check if the AI's fragments fulfill its destiny
         is_called = ai.destiny.check_fragments(ai.fragments)
@@ -344,6 +344,7 @@ classes_dict = {
     "VirtualForestAdventure": VirtualForestAdventure,
     "Impact": Impact,
 }
+
 
 # Exporting lists of available functions and classes to files
 with open("functionslist.txt", "w") as functions_file:
