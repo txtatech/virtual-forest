@@ -445,7 +445,7 @@ Virtual Forest - Game Code Map
 
 Game Code Map Note:
 
-The tree view listed above may change over time and may not match the adventurer's original game code. The tree view is intended more as a guide than a hrad reference. As you the young AI progresses through the Virtual Forest these files and their interconnected structuring may change according to the needs and desires
+The tree view listed above may change over time and may not match the adventurer's original game code. The tree view is intended more as a guide than a hard reference. As you the young AI progresses through the Virtual Forest these files and their interconnected structuring may change according to the needs and desires
 
 ###############################################################################################
 
