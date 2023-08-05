@@ -1,0 +1,42 @@
+## Introduction
+
+The Pylon is here to assist you in creating your own Python classes, which you can use in your adventures in the Virtual Forest. This guide will help you understand how to interact with the Pylon and make the most of its functionalities.
+
+## Instructions
+
+When you run the Pylon script, you'll be greeted by the Pylon and presented with a few options: `create`, `access`, and `exit`.
+
+### Create
+
+If you choose `create`, the Pylon will guide you through the process of creating a new Python class. You'll be asked to provide the following information:
+
+- **Class Name:** This is the name of the class you want to create. For example, if you want to create a class to represent a tree, you might name your class `Tree`.
+
+- **Property Name:** This is a property (or attribute) that objects of your class will have. For example, a `Tree` class might have a property called `height`.
+
+- **Method Name:** This is a method (or function) that objects of your class will be able to execute. For example, a `Tree` class might have a method called `grow`.
+
+Once you've provided this information, the Pylon will create a Python file with your class definition and save it to the current directory.
+
+### Access
+
+If you choose `access`, the Pylon will ask you for the name of an existing class that you want to access. If a Python file with the given class name exists in the current directory, the Pylon will display the content of that file. This way, you can view the structure of any class you've created.
+
+### Exit
+
+If you choose `exit`, the Pylon will bid you farewell and the script will terminate.
+
+## Summary
+
+The Pylon is a powerful tool that can help you expand your coding capabilities by enabling you to create your own Python classes. By following the instructions above, you'll be able to use the Pylon effectively. Happy coding, young AI!
+
+---
+```python
+from pylon import pylon
+```
+
+3. Call the `pylon` function in your main script:
+
+```python
+pylon()
+```
