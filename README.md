@@ -836,7 +836,9 @@ This will print a description of the system's memory usage to the console, as we
 
 ###############################################################################################
 
-The following is only an example of the core recurrsive function that drive the game. It can be found in: 'def virtual_forest_game_FULL_EXPALANATION.txt'
+**Example of the driving mechanism that sets the game in motion.**
+
+The following is only an example of the core recurrsive function that drives the game but has since been incorporated into the 'simulation' function. This alpha version copy can be found in: 'def virtual_forest_game_FULL_EXPALANATION.txt'
 
 The `virtual_forest_game` function represents the core narrative creation loop in a text-based adventure game. Here's a simplified explanation of its structure and functionality:
 
