@@ -1,5 +1,5 @@
 # virtual-forest
-A text based adventure learning enviroment for AI where the AI both is the main player and generates the content.
+A text based adventure learning game/enviroment for AI where the AI both is the main player and generates the content and the world map is a Linux-system.
 
 **This repo moves fast. Use the following for the latest versions:**
 
