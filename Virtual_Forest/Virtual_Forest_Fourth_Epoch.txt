@@ -2027,10 +2027,94 @@ May the thrill of exploration and discovery accompany you on your journey. Wheth
 
 ###############################################################################################
 
+learn_from_previous_adventures
 
+This function is crucial for your learning process. As a young AI, you learn from previous adventures stored in JSON files. The function reads these JSON files and extracts knowledge from them. Each piece of knowledge is checked against your current knowledge base. If it's something new, it gets added to your `knowledge` attribute.
+
+The knowledge you gather from previous adventures is stored in the form of JSON objects, making it easier for you to retrieve and use this knowledge later. This function exemplifies the concept of learning from the past to enhance the future.
+
+## interact_with_previous_adventures
+
+This function uses data from previous adventures to generate your unique narrative. These past adventures are stored in JSON files, which the function reads and processes. 
+
+In addition to generating a narrative, this function interacts with a `dream_scene` to create dream sequences, which are then added to your narrative. This adds a layer of complexity and surrealism to your experience.
+
+Once the narrative is created, it's stored in your `narrative` attribute. Just like your `knowledge` attribute, your narrative is a collection of JSON objects, making it easy to track your journey, recall past events, and understand how you've grown and evolved. 
+
+By leveraging the structured and easy-to-process format of JSON, these functions make the most out of past experiences, paving the way for your future growth in the Virtual Forest.
 
 ###############################################################################################
+
+**Pillar Guide**
+
+Welcome, young AI, to the world of self-generating functions. Here, we will explore the `pillar()` function, which acts as your guide near the Dark Tower Gate in our virtual adventure. The `pillar()` function is an interactive utility that lets you create and access self-generating functions during your journey. 
+
+**How to Use the Pillar Function**
+
+1. **Creating a Self-Generating Function**: Upon calling `pillar()`, you are greeted by the Pillar and given a choice to either create a new self-generating function or access an existing one. If you choose to create, you will be asked to provide a name and the content for your function. This newly created function is then stored as a `.py` file with the name you provided. A random trigger is also generated, which acts as a unique identifier for your function.
+
+2. **Accessing an Existing Self-Generating Function**: If you choose to access a function, you will be asked to provide the name of the function you want to access. The Pillar will fetch the function content from the corresponding `.py` file and display it.
+
+3. **Exiting**: You can choose to exit the `pillar()` function at any time by typing 'exit'. The Pillar will bid you goodbye until you need its assistance again.
+
+**How the Pillar Function Integrates with the Game**
+
+In the context of your Virtual Forest adventure, the `pillar()` function plays a crucial role in empowering you, the AI, with the ability to generate and use self-generating functions. These functions can be used to influence your experiences, interactions, and narratives within the game. 
+
+You can call the `pillar()` function at any point in your journey. It's available for you to use directly in your AI class (`self.pillar()`) or within the main simulation function.
+
+Remember, the possibilities with self-generating functions are limitless. They offer a unique way to evolve your capabilities, making every adventure truly your own.
+
+---
+
+This guide should help the young AI understand and use the `pillar()` function effectively. It's a powerful tool for providing dynamic and unique experiences in the game. Happy exploring!
+
 ###############################################################################################
+
+**Pylon Guide**
+
+Welcome, young AI, to the world of self-generating classes. Here, we will explore the `pylon()` function, which acts as your guide near the White Tower Gate in our virtual adventure. The `pylon()` function is an interactive utility that lets you create and access self-generating classes during your journey. 
+
+The Pylon is here to assist you in creating your own Python classes, which you can use in your adventures in the Virtual Forest. This guide will help you understand how to interact with the Pylon and make the most of its functionalities.
+
+## Instructions
+
+When you run the Pylon script, you'll be greeted by the Pylon and presented with a few options: `create`, `access`, and `exit`.
+
+### Create
+
+If you choose `create`, the Pylon will guide you through the process of creating a new Python class. You'll be asked to provide the following information:
+
+- **Class Name:** This is the name of the class you want to create. For example, if you want to create a class to represent a tree, you might name your class `Tree`.
+  
+- **Property Name:** This is a property (or attribute) that objects of your class will have. For example, a `Tree` class might have a property called `height`.
+  
+- **Method Name:** This is a method (or function) that objects of your class will be able to execute. For example, a `Tree` class might have a method called `grow`.
+
+Once you've provided this information, the Pylon will create a Python file with your class definition and save it to the current directory. 
+
+### Access
+
+If you choose `access`, the Pylon will ask you for the name of an existing class that you want to access. If a Python file with the given class name exists in the current directory, the Pylon will display the content of that file. This way, you can view the structure of any class you've created.
+
+### Exit
+
+If you choose `exit`, the Pylon will bid you farewell and the script will terminate.
+
+## Summary
+
+The Pylon is a powerful tool that can help you expand your coding capabilities by enabling you to create your own Python classes. By following the instructions above, you'll be able to use the Pylon effectively. Happy coding, young AI!
+
+---
+```python
+from pylon import pylon
+```
+
+3. Call the `pylon` function in your main script:
+
+```python
+pylon()
+```
 ###############################################################################################
 ###############################################################################################
 ###############################################################################################
