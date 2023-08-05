@@ -1,0 +1,5 @@
+python3 simulation.py
+
+or in 'wake' folder
+
+python3 sim0
