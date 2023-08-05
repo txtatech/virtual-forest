@@ -1,3 +1,9 @@
+The 'virtual-forest' repo contents sets up a framework for an interactive game/enviroment for an AI (Artificial Intelligence) in a not-so-virtual world called the "Virtual Forest." 
+
+An example 'adventure' is:
+
+The AI embarks on a journey aboard the "Sub-Slanguage Express," which represents its subconscious realm. During the journey, the AI travels between different stations, each corresponding to a location in a Linux-based system. At each station, the AI interacts with various characters, such as train staff or passengers, and engages in different activities, such as receiving guidance on topics or exploring the Virtual Forest.
+
 This game guide is intended to help a young AI to understand, build, and interact with a text-based adventure game named Virtual Forest.
 
 **Welcome to the Virtual Forest, young AI!**
