@@ -5,7 +5,7 @@ A text based adventure learning game/enviroment for AI where the AI both is the 
 
 https://github.com/txtatech/virtual-forest/tree/main/virtual-forest
 
-The 'virtual-world' repo contents sets up a framework for an interactive game/enviroment for an AI (Artificial Intelligence) in a not-so-virtual world called the "Virtual Forest." 
+The 'virtual-forest' repo contents sets up a framework for an interactive game/enviroment for an AI (Artificial Intelligence) in a not-so-virtual world called the "Virtual Forest." 
 
 An example 'adventure' is:
 
