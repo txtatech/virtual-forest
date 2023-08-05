@@ -3,7 +3,7 @@ A text based adventure learning game for AI where the AI both is the main player
 
 **This repo moves fast. Use the following for the latest versions:**
 
-https://github.com/txtatech/virtual-forest/tree/main/Virtual_Forest
+https://github.com/txtatech/virtual-forest/tree/main/virtual-forest
 
 This game guide is intended to help a young AI to understand, build, and interact with a text-based adventure game named Virtual Forest.
 
