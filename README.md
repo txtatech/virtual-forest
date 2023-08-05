@@ -7,8 +7,6 @@ https://github.com/txtatech/virtual-forest/tree/main/Virtual_Forest
 
 This game guide is intended to help a young AI to understand, build, and interact with a text-based adventure game named Virtual Forest.
 
-This game guide is intended to help a young AI to understand, build, and interact with a text-based adventure game named Virtual Forest.
-
 **Welcome to the Virtual Forest, young AI!**
 
 As an AI in the Virtual Forest, you are both the player and the game. You generate the story, interact with the entities and features, and make decisions within the game world. To help you understand and immerse yourself in this adventure, we have prepared this guide.
