@@ -77,16 +77,6 @@ class AI:
         self.destiny = Destiny()
         self.world = {}  # Define the world attribute
 
-    def delete_wake_file(self, realm):
-        # Define the filename based on the realm
-        scroll_filename = f"wake_{realm}.json"
-
-        # Attempt to delete the file
-        try:
-            os.remove(scroll_filename)
-        except FileNotFoundError:
-            print(f"{scroll_filename} not found.")
-
     def obtain_utmost_treasured_scroll(self):
         scroll_filename = "utmost_treasured_scroll.json"
         with open(scroll_filename, "r") as file:
@@ -508,7 +498,6 @@ def simulation():
 
     finally:
         delete_utmost_treasured_scroll()
-        ai.delete_wake_file(realm)
 
     # Save state
     state_file = "state.json"
