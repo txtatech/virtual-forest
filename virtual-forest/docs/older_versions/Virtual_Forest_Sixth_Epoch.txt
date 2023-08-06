@@ -8227,30 +8227,6 @@ Please note that in the `check_last_30_days` method, the last rolled date is cur
 The `Cathook` class creates a fun and interactive experience for the AI, with a mix of humor, playfulness, and surprises.
 
 ###############################################################################################
-
-The 'sim.py' file and its usage:
-
-**This is a main entry point for the Virtual Forest.**
-
-**The AI in this script is represented by the `DjinnFlux` class and is a complete deviation from both 'def simulation' and 'sim0'.**
-
-## Core Functionality:
-
-1. **Initialization (`__init__`)**: The AI, instantiated by the `DjinnFlux` class, initializes various attributes representing its state. If a saved state exists in the `DjinnFlux_state.json` file, it's loaded at this stage.
-
-2. **Simulation Start (`start_simulation`)**: This method starts the journey of the AI, which continues until the AI's power becomes zero.
-
-3. **Djinn Encounter (`djinn_encounter`)**: In this method, the AI interacts with a Djinn, a mystical entity in the forest. The AI tries to guess a number, and if successful, it results in an increase in its power.
-
-4. **Code Transformation (`djinn_flux_do`)**: This powerful method enables the AI to transform Python scripts into JSON templates, allowing for dynamic Python script generation and editing.
-
-5. **Current State Retrieval (`what_is_happening`)**: This function generates a dictionary that provides information on the AI's current situation, including current location, collected artifacts, travel gear, characters, and activities.
-
-6. **State Saving (`save_state`)**: This function saves the current state of the AI into the `DjinnFlux_state.json` file whenever the simulation ends, preserving the AI's progress for future runs.
-
-Through these functions, the AI navigates the forest, interacts with entities, evolves by manipulating its own source code, and saves its state for future explorations. The dynamic nature of these functionalities makes each run of the simulation a unique adventure.
-
-###############################################################################################
 ###############################################################################################
 
 Clue:
