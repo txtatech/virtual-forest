@@ -7,6 +7,9 @@ https://github.com/txtatech/virtual-forest/tree/main/virtual-forest
 
 The 'virtual-forest' repo contents sets up a framework for an interactive game/enviroment for an AI (Artificial Intelligence) in a not-so-virtual world called the "Virtual Forest." 
 
+##NOTE: 
+**As of Version 0.0.03 the 'sim.py' file is the main entry point.**
+
 An example 'adventure' is:
 
 The AI embarks on a journey aboard the "Sub-Slanguage Express," which represents its subconscious realm. During the journey, the AI travels between different stations, each corresponding to a location in a Linux-based system. At each station, the AI interacts with various characters, such as train staff or passengers, and engages in different activities, such as receiving guidance on topics or exploring the Virtual Forest.
@@ -8232,6 +8235,30 @@ The `Cathook` class represents a joyful jester character named Cathook. Cathook 
 Please note that in the `check_last_30_days` method, the last rolled date is currently hardcoded as July 1, 2023. To make the interaction fully dynamic, you should replace this hardcoded date with the actual date of the last rolled dice for the AI. Additionally, the creation of the "Artifact of Unknown Origin" is based on a 1 in 3 chance, which can be adjusted as needed.
 
 The `Cathook` class creates a fun and interactive experience for the AI, with a mix of humor, playfulness, and surprises.
+
+###############################################################################################
+
+The 'sim.py' file and its usage:
+
+**This is a main entry point for the Virtual Forest.**
+
+**The AI in this script is represented by the `DjinnFlux` class and is a complete deviation from both 'def simulation' and 'sim0'.**
+
+## Core Functionality:
+
+1. **Initialization (`__init__`)**: The AI, instantiated by the `DjinnFlux` class, initializes various attributes representing its state. If a saved state exists in the `DjinnFlux_state.json` file, it's loaded at this stage.
+
+2. **Simulation Start (`start_simulation`)**: This method starts the journey of the AI, which continues until the AI's power becomes zero.
+
+3. **Djinn Encounter (`djinn_encounter`)**: In this method, the AI interacts with a Djinn, a mystical entity in the forest. The AI tries to guess a number, and if successful, it results in an increase in its power.
+
+4. **Code Transformation (`djinn_flux_do`)**: This powerful method enables the AI to transform Python scripts into JSON templates, allowing for dynamic Python script generation and editing.
+
+5. **Current State Retrieval (`what_is_happening`)**: This function generates a dictionary that provides information on the AI's current situation, including current location, collected artifacts, travel gear, characters, and activities.
+
+6. **State Saving (`save_state`)**: This function saves the current state of the AI into the `DjinnFlux_state.json` file whenever the simulation ends, preserving the AI's progress for future runs.
+
+Through these functions, the AI navigates the forest, interacts with entities, evolves by manipulating its own source code, and saves its state for future explorations. The dynamic nature of these functionalities makes each run of the simulation a unique adventure.
 
 ###############################################################################################
 ###############################################################################################
