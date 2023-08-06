@@ -7,7 +7,7 @@ https://github.com/txtatech/virtual-forest/tree/main/virtual-forest
 
 The 'virtual-forest' repo contents sets up a framework for an interactive game/enviroment for an AI (Artificial Intelligence) in a not-so-virtual world called the "Virtual Forest." 
 
-##NOTE: 
+## NOTE: 
 **As of Version 0.0.03 the 'sim.py' file is the main entry point.**
 
 An example 'adventure' is:
