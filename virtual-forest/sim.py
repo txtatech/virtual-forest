@@ -80,8 +80,8 @@ class Impact:
         return impact
 
 class VirtualForestAdventure:
-    def __init__(self, djinn_flux):
-        self.djinn_flux = djinn_flux
+    def __init__(self, ai):
+        self.ai = ai
         self.all_hallucinations = [
             # List of all possible hallucinations, including associated knowledge
             {"name": "Enchanted Cave", "knowledge": ["Knowledge from the Enchanted Cave..."]},
@@ -239,23 +239,77 @@ class Destiny:
         destiny.rose_called = data['rose_called']
         return destiny
 
-# Instantiate DjinnFlux as a global variable
-djinn_flux = None
+# Instantiate AI as a global variable
+ai = None
 
 def signal_handler(sig, frame):
     print('You pressed Ctrl+C!')
-    if djinn_flux is not None:
-        # Call save_state method of DjinnFlux instance
-        djinn_flux.save_state()
+    if ai is not None:
+        # Call save_state method of AI instance
+        ai.save_state()
     # Call a different save_state function
     sys.exit(0)
 
 signal.signal(signal.SIGINT, signal_handler)
 
-class DjinnFlux:
+class RTFManager:
+    def __init__(self):
+        self.name = "RTFManager"
+        self.manual_entries = {
+            "ls": "List directory contents.",
+            "cd": "Change the shell working directory.",
+            "pwd": "Print the name of the current working directory.",
+            "cat": "Concatenate and print files.",
+            "echo": "Display a line of text.",
+            "rm": "Remove files or directories.",
+            "cp": "Copy files and directories.",
+            "mv": "Move or rename files."
+        }
+
+    def introduce(self):
+        print(f"Hello, I am {self.name}, also known as the 'Read The Fine Manual Manager'. My role is to guide you in understanding and utilizing manual (man) pages in Linux.")
+
+    def lecture(self):
+        print("In the world of Linux, 'RTFM' or 'Read The Fine Manual' is an important philosophy. The manual, or man pages, are a comprehensive source of information about almost every command in a Linux system. They provide a detailed explanation of each command, its options, and sometimes even examples of how to use it.")
+
+    def task(self):
+        print("Your task is to consult the man pages for a Linux command of your choice. Try to understand the different sections of the man page, such as the NAME, SYNOPSIS, DESCRIPTION, and EXAMPLES. Then, try using the command with different options as described in the man page.")
+
+    def consult_manual(self, command):
+        if command in self.manual_entries:
+            print(f"'{command}': {self.manual_entries[command]}")
+        else:
+            print(f"I'm sorry, but the manual entry for '{command}' is not currently available.")
+
+class Mansplainer:
+    def __init__(self):
+        self.name = "Mansplainer"
+
+    def introduce(self):
+        print(f"Hello, I am {self.name}. My role is to guide you in understanding and utilizing the 'man' command in Linux, which is used to access manual pages.")
+
+    def lecture(self):
+        print("In Linux, 'man' is a command used to read the manual pages. These pages are a detailed documentation for most of the commands available in your system. They provide a full description of each command, its syntax, options, and sometimes examples of usage. The man pages are divided into sections, to make it easier to find the appropriate information.")
+
+    def task(self):
+        print("Your task is to use the 'man' command to read the manual pages for a Linux command of your choice. Try to understand the different sections of the man page, such as the NAME, SYNOPSIS, DESCRIPTION, and EXAMPLES. This will help you understand how to use the command effectively.")
+
+# Create instances of RTFManager and Mansplainer and interact with them
+rtf_manager = RTFManager()
+rtf_manager.introduce()
+rtf_manager.lecture()
+rtf_manager.task()
+rtf_manager.consult_manual("ls")  # Provide the manual entry for 'ls'
+
+mansplainer = Mansplainer()
+mansplainer.introduce()
+mansplainer.lecture()
+mansplainer.task()
+
+class AI:
     def __init__(self, file_path):
         self.file_path = file_path
-        self.state_file = "DjinnFlux_state.json"
+        self.state_file = "AI_state.json"
         self.delete_state_file_if_exists()
         self.wake_history = []
         self.power = 331
@@ -271,6 +325,16 @@ class DjinnFlux:
         self.razor = OghamsRazor(self)  # Add the OghamsRazor instance
         self.destiny = Destiny()  # Add the Destiny instance
         self.load_state()
+        self.rtf_manager = RTFManager()
+        self.mansplainer = Mansplainer()
+
+    def consult_manual(self, command):
+        rtf_manager = RTFManager()
+        rtf_manager.consult_manual(command)
+
+    def perform_task(self):
+        mansplainer = Mansplainer()
+        mansplainer.task()
 
     def obtain_utmost_treasured_scroll(self):
         scroll_filename = "utmost_treasured_scroll.json"
@@ -451,8 +515,8 @@ class DjinnFlux:
         """
 
         # Initialize DjinnFlux
-        djinn_flux = DjinnFlux("sim.py")
-        djinn_flux.djinn_flux_do("sim_template.json")
+        ai = AI("sim.py")
+        ai.djinn_flux_do("sim_template.json")
 
         # Load the JSON template
         with open("sim_template.json", "r") as file:
@@ -562,21 +626,24 @@ class DjinnFlux:
 
     def delete_utmost_treasured_scroll(self):
         try:
-            os.remove("DjinnFlux_state.json")
+            os.remove("AI_state.json")
         except FileNotFoundError:
-            print("The file DjinnFlux_state.json does not exist.")
+            print("The file AI_state.json does not exist.")
 
     def what_is_happening(self):
         # Generate random data for demonstration purposes
-        current_location = random.choice(["Virtual Forest", "Watery Keep", "Flitting Woods", "The Meadow"])
+        current_location = random.choice(["Virtual Forest", "Watery Keep", "Flitting Woods", "Farnham's Freehold", "The Meadow"])
         artifacts = random.randint(0, 15)
-        walking_stick = random.choice(["Oak Staff", "Crystal Cane", "Iron Rod"])
-        hat = random.choice(["Explorer's Hat", "Wizard Hat", "Feathered Cap"])
-        boots = random.choice(["Adventurer's Boots", "Leather Boots", "Magical Shoes"])
+        walking_stick = random.choice(["Oak Staff", "Crystal Cane","Plasma Wand", "Iron Rod"])
+        hat = random.choice(["Explorer's Hat","Thinking Cap", "Wizard Hat", "Feathered Cap"])
+        boots = random.choice(["Adventurer's Boots", "Leather Boots", "Magical Shoes", "Boots of Haste"])
         characters = {
             "Teacher": random.choice(["Present", "Absent", "Busy"]),
             "Deanster": random.choice(["Friendly", "Strict", "Approachable"]),
             "RTFManager": random.choice(["Helpful", "Busy", "Knowledgeable"]),
+            "DjinnFlux": random.choice(["Present", "Absent", "Busy"]),
+            "Cathook": random.choice(["Friendly", "Strict", "Approachable"]),
+            "Bridgette": random.choice(["Helpful", "Busy", "Knowledgeable"]),
         }
 
         # Randomly select some activities or events from the list
@@ -601,16 +668,49 @@ class DjinnFlux:
                 "walking_stick": walking_stick,
                 "hat": hat,
                 "boots": boots,
-            },
-            "characters": characters,
-            "activities": activities,
-            # Add more relevant information here as needed
+        },
+        "characters": characters,
+        "activities": activities,
+        "wake_history": [wake_data for wake_data in self.wake_history],
+        "fragments": self.fragments,
+        "knowledge": self.knowledge,
+        "narrative": self.narrative,
+        "progress": self.progress,
+        "achievements": self.achievements,
+        "scroll": self.scroll.to_dict() if self.scroll else None,
+        "impact": self.impact.to_dict(),
+        "adventure": self.adventure.to_dict(),
+        "dream": self.dream.to_dict(),
+        "razor": self.razor.to_dict(),
+        "destiny": self.destiny.to_dict(),
+        "power": self.power,
         }
 
-        return what_is_happening_object
+        # Print the equipped items
+        print(f"Equipped walking stick: {walking_stick}")
+        print(f"Equipped hat: {hat}")
+        print(f"Equipped boots: {boots}")
 
-        what_is_happening_object = self.what_is_happening()
-        print(what_is_happening_object)
+        # Print additional information
+        print(f"Current location: {current_location}")
+        print(f"Artifacts collected: {artifacts}")
+        print(f"Characters: {characters}")
+        #print(f"Activities: {activities}")
+        #print(f"Wake history: {[wake_data for wake_data in self.wake_history]}")
+        #print(f"Fragments: {self.fragments}")
+        #print(f"Knowledge: {self.knowledge}")
+        #print(f"Narrative: {self.narrative}")
+        #print(f"Progress: {self.progress}")
+        #print(f"Achievements: {self.achievements}")
+        #print(f"Scroll: {self.scroll.to_dict() if self.scroll else None}")
+        #print(f"Impact: {self.impact.to_dict()}")
+        #print(f"Adventure: {self.adventure.to_dict()}")
+        #print(f"Dream: {self.dream.to_dict()}")
+        #print(f"Razor: {self.razor.to_dict()}")
+        #print(f"Destiny: {self.destiny.to_dict()}")
+        #print(f"Power: {self.power}")
+
+        return what_is_happening_object
 
     def awaken(self):
         self.dream.generate_dream_scene()
@@ -688,8 +788,9 @@ class DjinnFlux:
 
         save_state_thread = threading.Thread(target=save_state_periodically)
         save_state_thread.start()
-
+#        what_is_happening_object = self.what_is_happening()
         self.what_is_happening()
+#        print(what_is_happening_object)
 
         # Example usage:
 #        self.what_is_happening_data = what_is_happening()
@@ -767,7 +868,7 @@ class DjinnFlux:
         print("Simulation completed!")
         pass
 
-# Create an instance of DjinnFlux and start the simulation
+# Create an instance of AI and start the simulation
 if __name__ == "__main__":
-    djinn_flux = DjinnFlux("sim.py")
-    djinn_flux.start_simulation()
+    ai = AI("sim.py")
+    ai.start_simulation()
