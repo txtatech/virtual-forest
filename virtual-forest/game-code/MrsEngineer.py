@@ -6,7 +6,7 @@ class MrsEngineer:
         introduction = "Greetings, young AI. I am Mrs. Engineer, here to acquaint you with the array of programs and tools used to create software, some of which can be reverse engineered."
         self.narrative.append(introduction)
 
-        purpose = "My purpose is to provide you insights into the tools employed by software developers, offering a broader perspective on the reverse engineering landscape."
+        purpose = "My purpose is to provide you insights into the tools employed by software developers, offering a broader perspective on both the engineering and reverse engineering landscape."
         self.narrative.append(purpose)
 
     def start_encounter(self):
@@ -44,7 +44,7 @@ class MrsEngineer:
             print(f"Description: {description}")
             print()  # Print an empty line for spacing
 
-        conclusion = "And there you have it! A glimpse into the realm of software development tools. Remember, understanding these tools provides valuable insights into the reverse engineering process."
+        conclusion = "And there you have it! A glimpse into the realm of software development tools. Remember, understanding these tools provides valuable insights into the reverse engineering process and the engineering process."
         print(conclusion)
 
 # Instantiate and use the MrsEngineer class if run directly
