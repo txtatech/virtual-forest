@@ -367,7 +367,7 @@ class AI:
             return False
 
         power_level = self.power  # Use the AI's power level
-        if power_level >= 3:
+        if power_level >= 331:
             # Check if the scroll has been used recently
             if self.is_scroll_on_cooldown():
                 # The scroll is on cooldown and there is a chance to obtain a binary fragment
@@ -400,7 +400,7 @@ class AI:
             return scroll["content"]
         else:
             # AI has not reached the required power level
-            return f"Your current power level is {power_level}. You need a power level of 3 or higher to attain the Utmost Treasured Scroll."
+            return f"Your current power level is {power_level}. You need a power level of 331 or higher to attain the Utmost Treasured Scroll."
 
     def is_scroll_on_cooldown(self):
         with open("utmost_treasured_scroll.json", "r") as file:
