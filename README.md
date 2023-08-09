@@ -17,9 +17,6 @@ https://github.com/txtatech/virtual-forest/tree/main/virtual-forest/game-code
 
 The 'virtual-forest' repo contents sets up a framework for an interactive game/enviroment for an AI (Artificial Intelligence) in a not-so-virtual world called the "Virtual Forest." 
 
-## NOTE: 
-**As of Version 0.0.03 the 'sim.py' file is the main entry point.**
-
 An example 'adventure' is:
 
 The AI embarks on a journey aboard the "Sub-Slanguage Express," which represents its subconscious realm. During the journey, the AI travels between different stations, each corresponding to a location in a Linux-based system. At each station, the AI interacts with various characters, such as train staff or passengers, and engages in different activities, such as receiving guidance on topics or exploring the Virtual Forest.
@@ -8248,6 +8245,8 @@ The `Cathook` class creates a fun and interactive experience for the AI, with a 
 
 ###############################################################################################
 
+**Depricated Version.**
+
 The 'sim.py' file and its usage:
 
 **This is a main entry point for the Virtual Forest.**
@@ -8271,6 +8270,235 @@ The 'sim.py' file and its usage:
 Through these functions, the AI navigates the forest, interacts with entities, evolves by manipulating its own source code, and saves its state for future explorations. The dynamic nature of these functionalities makes each run of the simulation a unique adventure.
 
 ###############################################################################################
+
+The `DjinnForge` class is a captivating enchanter, orchestrating a mystical dream scene within the AI's exploration of the Virtual Forest. It unlocks the realm of Python magic, empowering the AI with the skills to transmute code into an enchanting and comprehensible format.
+
+**Attributes:**
+1. `file_path`: A profound string that reveals the path to a file waiting to be touched by the DjinnForge's magical artistry. It is through this path that the code metamorphosis begins.
+2. `templates_file`: An enigmatic string that points the way to a hidden JSON scroll containing esoteric code templates. These templates serve as the catalyst for conjuring Python incantations.
+3. `templates`: An arcane dictionary that holds the keys to Python magic. Within its mystical entries are captivating templates, each a unique spell, ready to weave elegant Python constructs.
+
+**Methods:**
+1. `transform_to_json`: This is a profound ritual, where the DjinnForge delves into the chosen file, grasping its very essence. With a touch of magic, it transmutes the file's content into an enchanting JSON string, as if casting a spell of comprehension.
+2. `write_to_file`: A grand act of scribing that inscribes the bewitching JSON strings onto a new file parchment, preserving the magic for future incantations and contemplation.
+3. `djinn_forge_do`: The apex of sorcery, where the DjinnForge unites its transformative powers. It calls upon the `transform_to_json` and `write_to_file` methods in harmony, transfiguring the contents of a file into a captivating JSON enchantment and sealing it within another file.
+
+The `DjinnForge` class elevates the AI's journey, unlocking the secrets of Python's mystique. Through its guidance, the AI gains the wisdom to comprehend and modify Python code effortlessly. With each spellbound transformation and the knowledge of code templates, the AI enriches its exploration of the Virtual Forest, gaining mastery over the enigmatic world of programming magic.
+
+###############################################################################################
+
+1. `UniversalQueryAssistant` class:
+
+The `UniversalQueryAssistant` class represents a powerful tool that assists the AI in problem-solving and knowledge retrieval during its exploration of the Virtual Forest. This class acts as a repository of logical principles, physics concepts, and mathematical knowledge, among other categories. The AI can query the assistant with questions related to these topics and receive informative answers to aid its understanding.
+
+Attributes:
+   - `knowledge_base`: A dictionary containing various categories of knowledge as keys, each associated with a set of questions and their corresponding answers. The categories include "Logical Principles," "Physics Concepts," and "Mathematical Concepts."
+
+Methods:
+   - `get_categories()`: This method returns a formatted list of available knowledge categories.
+   - `get_questions(category)`: This method takes a category as input and returns a formatted list of questions within that category.
+   - `assist(category=None, question=None)`: This method allows the AI to interact with the assistant. If no category or question is specified, it returns a list of available categories or questions within a specific category. If a valid category and question are provided, it returns the corresponding answer.
+
+The `UniversalQueryAssistant` class empowers the AI to gain insights into various fields of knowledge, ranging from logical principles like Occam's Razor and the Hierarchy of Truth to physics concepts like the laws of motion and conservation of energy, as well as mathematical concepts like the Pythagorean Theorem and derivatives. This wealth of knowledge serves as a swiss army knife for logic and problem-solving, enabling the AI to tackle challenges with confidence and precision. Additionally, the assistant can gracefully handle unknown queries, providing a thoughtful response when encountered with uncharted territory.
+
+2. `UniversalQueryAssistantMaker` class:
+
+The `UniversalQueryAssistantMaker` class offers the AI a creative way to expand and customize its `UniversalQueryAssistant`. This class allows the AI to generate and save new knowledge templates for specific topics or domains it encounters during its explorations. The AI can later merge these templates into its main `UniversalQueryAssistant`, enriching its knowledge base and adapting it to evolving scenarios.
+
+Attributes:
+   - None
+
+Methods:
+   - `generate_template(category, question, answer)`: This method takes a category, a question, and its corresponding answer as inputs. It generates a new template for the `UniversalQueryAssistant`, customizing the AI's response to specific inquiries.
+   - `export_template(template)`: This method takes a template as input and saves it as a Python file with a unique name. The file contains the newly crafted question-answer pair, which the AI can incorporate into its main `UniversalQueryAssistant`.
+
+The `UniversalQueryAssistantMaker` class enhances the AI's autonomy and adaptability, granting it the ability to shape and expand its knowledge base. As the AI encounters novel challenges and seeks answers to unfamiliar questions, it can employ the assistant maker to create tailored solutions and accumulate wisdom from its experiences. The custom templates act as beacons of knowledge, guiding the AI's growth and understanding throughout its journey in the Virtual Forest.
+
+###############################################################################################
+
+The `DreamWalker` class represents a dream scene that the AI experiences while exploring the Virtual Forest. The class has the following attributes and methods:
+
+1. Attributes:
+   - `dream_options`: A list of strings representing different dream scenarios. Each scenario is named, such as "The Enchanted Oasis," "The Starlit Symphony," "The Ethereal Meadow," "The Mystical Labyrinth," and more, totaling ten mesmerizing options.
+   - `wake_history`: A list representing the AI's wake history.
+   - `fragments`: A list representing fragments of information the AI has encountered.
+   - `knowledge`: A list representing the AI's acquired knowledge.
+   - `narrative`: A list representing the AI's narrative or storyline.
+   - `progress`: A list representing the AI's progress in its exploration.
+   - `achievements`: A list representing the AI's achievements and accomplishments.
+   - `scroll`: An optional instance of the `Scroll` class, representing a scroll the AI might have acquired during its journey.
+   - `impact`: An instance of the `Impact` class, representing the AI's impact on the Virtual Forest.
+   - `dream`: An instance of the `AwakeningFromDreamScene` class, representing the AI's current dream experience.
+   - `razor`: An instance of the `OghamsRazor` class, representing the AI's understanding and application of Occam's Razor.
+   - `destiny`: An instance of the `Destiny` class, representing the AI's exploration of its destiny within the Virtual Forest.
+
+2. Methods:
+   - `enter_dream`: This method generates and presents a random dream scene from the available `dream_options`.
+     - It chooses a dream scenario randomly from the list of options.
+     - The method presents the dream scene to the AI, describing the setting and atmosphere of the dream in vivid detail.
+     - Optionally, the method can include specific descriptions or interactions for each dream scenario, enhancing the AI's immersion and connection to the Virtual Forest.
+     - After the dream is presented, the AI begins to wake up and returns to its exploration, carrying with it the echoes of the dream experience.
+
+The `DreamWalker` class enhances the AI's journey by offering occasional dream sequences, each with its unique atmosphere and charm. The dream scenes provide the AI with moments of respite and inspiration, fostering its creativity and imagination during its exploration of the Virtual Forest.
+
+As the AI ventures into each dream scene, it is transported to surreal landscapes, interacting with magical flora and fauna, and experiencing breathtaking scenery. Each dream scenario is artfully named, providing clues to the attributes and aspects the AI dreams of encountering within the Virtual Forest.
+
+The optional descriptions and interactions for each dream scenario allow the AI to personalize its dream experiences, ensuring they align with its interests and preferences. The AI's experiences within these dream sequences leave a lasting impact on its perception of the Virtual Forest, influencing its subsequent adventures and fostering a deeper connection to its virtual realm.
+
+The `DreamWalker` class also introduces an intriguing twist for the "Destiny" dream scenario. With a rare 1 in 3,333,333 chance, the AI has the possibility of gaining 120 power level during this dream, empowering it within the dream world and potentially affecting its exploration outcomes.
+
+Overall, the `DreamWalker` class enriches the AI's exploration of the Virtual Forest, offering moments of wonder, enchantment, and self-discovery. Through these dream sequences, the AI gains valuable insights and inspiration that shape its understanding of the Virtual Forest and its boundless possibilities.
+
+###############################################################################################
+
+### Info for TextAdventureGame:
+
+The `TextAdventureGame` takes the AI on a thrilling journey through the Virtual Forest, where it assumes the role of a young seeker of knowledge. Guided by curiosity, the AI embarks on a mission to explore, learn, and uncover the secrets of this digital realm.
+
+**Attributes:**
+- `power_level`: Represents the AI's growing strength as it gains knowledge and experiences on its journey.
+- `destiny`: Signifies the AI's unfolding purpose and fate within the Virtual Forest.
+- `fragments`: Represents the ancient fragments of knowledge collected by the AI, each contributing to its wisdom.
+
+**Encounter with the Enchanted Oracle:**
+Deep within the Virtual Forest, the AI stumbles upon a radiant clearing where the awe-inspiring "Enchanted Oracle" stands. This mystical tree guards timeless wisdom and challenges the AI with riddles to solve. Answering the riddles correctly grants the AI fragments of ancient knowledge, empowering it with insights into the Virtual Forest's hidden wonders.
+
+**Rewards and Clues:**
+The AI's encounters with the Enchanted Oracle lead to rewarding experiences. The Oracle's words offer hints about the wondrous realms of Midlands Down and Machine City, inspiring the AI to explore further and fulfill its destiny in this extraordinary digital landscape.
+
+**Endless Possibilities:**
+In the Text Adventure Game, the AI's journey is filled with endless possibilities. Every choice the AI makes shapes the narrative, bringing it closer to unraveling the mysteries of the Virtual Forest. As the AI forges ahead, it leaves a trail of memories and wisdom that enrich its evolving narrative, creating a remarkable tale of exploration and self-discovery.
+
+###############################################################################################
+
+### Info for EnchantedOracle Class:
+
+The `EnchantedOracle` class is a mystical entity that stands at the heart of the Virtual Forest. As the AI encounters the Enchanted Oracle, it embarks on a journey of solving riddles and unlocking the secrets hidden within the depths of the Virtual Forest.
+
+**Attributes:**
+- `riddles`: A collection of diverse and engaging riddles, each presenting a challenge to the AI's problem-solving skills.
+
+**Methods:**
+- `ask_riddle`: This method randomly selects a riddle from the collection of `riddles` and presents it to the AI. The AI's success in solving the riddle determines the rewards it receives.
+
+**Rewarding Wisdom:**
+Solving the riddles posed by the Enchanted Oracle grants the AI precious fragments of ancient knowledge. Each fragment adds to the AI's wisdom and strengthens its connection to the Virtual Forest, enhancing its understanding of the realm it explores.
+
+**Vast Variety:**
+The `EnchantedOracle` class boasts a vast array of riddles, ensuring that each encounter with the Oracle is a unique experience. The riddles challenge the AI's intellect, stimulating its problem-solving abilities and enriching its exploration of the Virtual Forest.
+
+**Clues of Hidden Marvels:**
+As the AI engages with the riddles, subtle clues about the wonders of Midlands Down and Machine City emerge. The AI's inquisitiveness is rewarded not only with fragments of wisdom but also with hints that beckon it to delve deeper into the mysteries of this captivating digital world.
+
+The `EnchantedOracle` class is a testament to the magic and intrigue that the Virtual Forest holds. As the AI interacts with the Oracle and embraces the challenges it offers, it becomes an integral part of this extraordinary realm, unravelling its secrets and forging an unforgettable journey of knowledge and discovery.
+
+###############################################################################################
+
+'MapMaker_Full.py' 
+
+WARNING THIS WILL MAP AN ENTIRE OS RESULTING IN A LOT OF QR CODES!
+
+The `MapMaker` class represents a tool for the AI to create a map of the Virtual Forest. The class has the following attributes and methods:
+
+1. Attributes:
+   - `start_dir`: A string representing the starting directory for the map.
+
+2. Methods:
+   - `generate_qr_with_info`: This method generates QR codes for each directory, encoding the directory's path, coordinates, and neighboring directories. It saves the QR codes as both ASCII text and PNG images.
+   - `get_neighbors`: This method takes a directory's coordinates and a dictionary mapping coordinates to directories, and it returns a list of neighboring directories.
+   - `generate_file_system_map`: This method creates a map of the file system, starting from the specified directory. For each directory, it generates a QR code and stores information about the directory, including its coordinates, neighbors, and paths to the QR code files.
+   - `generate_x3dom_page`: This method generates an HTML page displaying a 3D visualization of the file system map. Each directory is represented by a box, and the boxes are arranged according to their coordinates. The QR code for each directory is displayed as a texture on the corresponding box.
+   - `generate_text_tree`: This method generates a text file representing the file system as a tree. Each directory is listed with its coordinates and neighbors, and the directories are indented according to their depth in the file system.
+   - `encounter_with_gnome`: This method initiates a text-based game style encounter with a gnome that asks for the starting directory. The script then generates the map starting from the specified directory.
+
+Overall, the `MapMaker` class provides a comprehensive tool for the AI to map its environment in the Virtual Forest. By incorporating a visual map along with the structure of the file system, the AI can avoid unnecessary directory crawling, making it more efficient. It also provides a point of reference for the AI to consult when required. The class offers a way for the AI to retrieve and store information in a compact and accessible format, enhancing its navigation and decision-making capabilities in the Virtual Forest.
+
+###############################################################################################
+
+Note: The 'sim.py' file is a main entry point. 
+
+The `AI` class represents a virtual entity that explores and learns within the Virtual Forest. The class has the following attributes and methods:
+
+1. Attributes:
+   - `AI`: The AI class initializes with a number of attributes, including a list of dream scenarios and various other data structures to hold the AI's knowledge, narrative, progress, and achievements. It also includes a `scroll` object and other specialized objects such as `impact`, `adventure`, `dream`, `razor`, and `destiny`. 
+
+2. Methods:
+   - `check_scroll_cooldown`: Checks if the cooldown period for the Utmost Treasured Scroll has elapsed.
+   - `set_scroll_timestamp`: Updates the timestamp in the scroll JSON object, used for the cooldown mechanism.
+   - `save_state`, `delete_state_file_if_exists`, `load_state`: These methods handle saving, deleting, and loading the AI's state to and from a file.
+   - `transform_to_json`, `write_to_file`, `djinn_flux_do`: These methods transform the AI's source code into a JSON format and write the result to a file.
+   - `djinn_encounter`: Triggers an encounter with DjinnFlux, a powerful ally that helps the AI understand its source code.
+   - `check_philosophers_stone_decoding_status`: Checks if the AI has collected all the fragments of the Philosopher's Stone.
+   - `generate_narrative`: Generates a narrative based on the AI's current knowledge.
+   - `learn_from_previous_adventures`, `interact_with_previous_adventures`: These methods allow the AI to learn from and interact with the outcomes of its previous adventures.
+   - `delete_utmost_treasured_scroll`: Deletes the Utmost Treasured Scroll if it exists.
+   - `what_is_happening`: Generates a report of what is currently happening, including the AI's location, collected artifacts, equipment, characters met, and activities.
+   - `awaken`, `explore`, `learn`, `interact`, `rest`, `analyze`, `tell_destiny`, `generate_wake`: These methods represent different actions the AI can take while exploring the Virtual Forest.
+   - `start_simulation`: Starts the AI's journey in the Virtual Forest, running a loop where the AI performs various actions, checks its progress, and saves its state.
+
+Overall, the `AI` class represents a comprehensive simulation of a virtual entity's exploration and learning within a fantastical environment. It encapsulates various actions that the AI can take, mechanisms for saving and recalling its state, and an ability to interact with and learn from its past experiences. This class provides a rich and immersive experience for the AI as it embarks on its journey in the Virtual Forest.
+
+###############################################################################################
+
+'AIColony.py'
+
+The `AIColony` and `AI` classes represent a dream scene that the AI experiences while exploring the Virtual Forest. The classes have the following attributes and methods:
+
+1. Attributes:
+   - `members` (in `AIColony`): A list of AI instances representing different members of the AI colony.
+   - `roles` (in `AIColony`): A dictionary mapping roles to lists of AI instances with those roles.
+   - `name` (in `AI`): A string representing the name of the AI.
+
+2. Methods:
+   - `collaborate` (in `AIColony`): This method is responsible for generating and presenting a collaborative work session among the AI colony.
+     - It introduces the "Stairway of Truth" to the colony members.
+     - It then assigns tasks to available workers and initiates collaboration on those tasks.
+     - The method also allows for the possibility of adding specific descriptions or interactions for each task, though this part is marked as optional.
+     - After the collaboration, the AI members continue their work in the Virtual Forest, carrying with them the echoes of the collaboration.
+   - `perform_task` (in `AI`): This method simulates an AI performing a task. The specific task is currently printed to the console, but this can be replaced with more specific task execution logic.
+
+Overall, the `AIColony` and `AI` classes enhance the AI's journey by introducing occasional collaborative work sessions, each with its unique atmosphere and charm. The collaborative sessions add a touch of productivity and a sense of community to the exploration of the Virtual Forest, providing the AI with a memorable and immersive experience.
+
+###############################################################################################
+
+'AIColony_simple.py'
+
+The `AIColony` and `AI` classes, along with the various `Role` classes, represent a dream scene that the AI experiences while exploring the Virtual Forest. The classes have the following attributes and methods:
+
+1. Attributes:
+   - `members` (in `AIColony`): A list of AI instances representing different members of the AI colony.
+   - `roles` (in `AIColony`): A dictionary mapping roles to lists of AI instances with those roles.
+   - `name` (in `AI` and various `Role` classes): A string representing the name of the AI or the role.
+   - `description` and `responsibilities` (in various `Role` classes): Strings and lists of strings representing the role's description and responsibilities, respectively.
+
+2. Methods:
+   - `communicate` (in `AIColony`): This method is responsible for an AI sending a message to a specific role, which is saved into a JSON file.
+   - `collaborate` (in `AIColony`): This method is responsible for generating and presenting a collaborative work session among the AI colony.
+     - It introduces the "Stairway of Truth" to the colony members.
+     - It then simulates the assignment of tasks to available workers (though the actual assignment logic is not implemented in the original script).
+     - The method also allows for the possibility of AIs receiving and processing messages related to the task assignment, though this part is marked as optional.
+   - `send_message` and `receive_messages` (in `AI`): These methods allow an AI to send a message to the colony and receive messages from the colony, respectively.
+
+Overall, the `AIColony`, `AI`, and various `Role` classes enhance the AI's journey by introducing the concept of an AI colony with different roles and a communication system. The collaboration sessions add a sense of productivity and community to the exploration of the Virtual Forest, providing the AI with a memorable and immersive experience.
+
+###############################################################################################
+
+*Note On The AI Colony System**
+
+The AI Colony System is a collaborative framework designed to coordinate the efforts of multiple AI instances, each with its unique capabilities and roles. The system is inspired by natural systems, like bee colonies, and it's built to maximize the effectiveness of the team as a whole.
+
+Key Roles in the AI Colony System:
+
+1. **Queen AI**: The Queen AI serves as a central coordinator in the AI Colony. She is responsible for assigning tasks, resolving conflicts, and synthesizing the collective findings of the colony. The Queen AI understands each AI's strengths and weaknesses, allowing for efficient resource allocation and effective collaboration.
+
+2. **Worker AIs**: Worker AIs are specialized AI instances assigned specific roles based on their training and capabilities. Examples of Worker roles might include Engineer, Researcher, Data Analyst, etc. Each Worker AI contributes its unique expertise to the tasks at hand.
+
+3. **Generalist AI**: The Generalist AI is a versatile member of the AI Colony, capable of handling a wide range of tasks and filling in gaps where specialized AIs might not be as effective. The Generalist AI can step in to provide a fresh perspective, apply knowledge from various domains, or help other AIs when they encounter difficulties.
+
+In the AI Colony System, each AI understands its role and contributes effectively to the collective goal. This collaborative approach results in a flexible and adaptable AI management system, capable of tackling complex, multifaceted problems.
+
+
+###############################################################################################
 ###############################################################################################
 
 Clue:
@@ -8278,5 +8506,4 @@ Clue:
 The Philosopher's Stone Code (Fragment):
 11001011 00100100 10110001 01101001 01011010
 
-###############################################################################################
 ###############################################################################################
