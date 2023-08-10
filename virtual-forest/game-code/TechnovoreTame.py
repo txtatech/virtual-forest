@@ -4,13 +4,13 @@ import time
 class TechnovoreTame:
     def __init__(self):
         self.fragments = random.randint(0, 50)  # AI's fragments
-        self.last_technovore_spawn_time = time.time() - random.randint(0, 72 * 60 * 60)  # Last Technovore spawn time in seconds
+        self.last_technovore_spawn_time = time.time() - random.randint(0, 12 * 60 * 60)  # Last Technovore spawn time in seconds
 
     def tell_joke(self):
         return "How do you know if an entity is a technovore?\n\nDon't worry, they will tell you!"
 
     def can_tame(self):
-        return self.fragments >= 33 and (time.time() - self.last_technovore_spawn_time >= 72 * 60 * 60)
+        return self.fragments >= 33 and (time.time() - self.last_technovore_spawn_time >= 12 * 60 * 60)
 
     def tame_technovore(self):
         if self.can_tame():
