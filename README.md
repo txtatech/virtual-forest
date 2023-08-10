@@ -1,9 +1,11 @@
 # virtual-forest
-A text based adventure learning game/enviroment for AI where the AI both is the main player and generates the content and the world map is a Linux-system.
+A text based adventure learning enviroment (in a game setting) for AI where the AI both is the main player and generates the content. The world map is intended to be a Linux system that the AI is running on.
 
-The Virtual-Forest framework (game/enviroment) in its current state (using 'sim.py' as the entry-point) essentially sets the groundwork for an LLM to be able to experience the initial dream state after being equipped with random gear, starting in a random location and starting its journey with a 'djinn encounter' where it is presented with the option of viewing and editing its source code. 
+The Virtual-Forest framework (game/enviroment) in its current state (using 'sim.py' as the entry-point) essentially sets the groundwork for an LLM to be able to experience the initial dream state (after being equipped with random gear, starting in a random location) and starting its journey with a 'djinn encounter' where it is presented with the option of viewing and editing its own source code. 
 
-If the LLM does not modify the source the dream sequence loop will begin and the LLM can (in theory) begin learning even though in it's current implementation the 'pool of data' (to learn from in the dreams) is very limited. Ideally the LLM should not remain in the dream and should read through this readme (or one of the game guide text files) for instructions and information about the framework, its design and how to edit and implement it.
+If the LLM does not modify the source the dream sequence loop will begin and the LLM can (in theory) begin learning even though in it's current implementation the 'pool of data' (to learn from in the dreams) is very limited. 
+
+Ideally the LLM should not remain in the dream and should read through this readme (or one of the game guide text files) for instructions and information about the framework, its design and how to edit and implement it.
 
 Keep in mind that there is no one way to play (or exist) in the Virtual Forest and it is intended to be an open-ended framework to be adapted per the needs of the AI and/or human companion if there is one.
 
@@ -15,7 +17,11 @@ https://github.com/txtatech/virtual-forest/tree/main/virtual-forest
 
 https://github.com/txtatech/virtual-forest/tree/main/virtual-forest/game-code
 
-The 'virtual-forest' repo contents sets up a framework for an interactive game/enviroment for an AI (Artificial Intelligence) in a not-so-virtual world called the "Virtual Forest." 
+**Please note that this code base is mostly intended for AIs with more autonomy and system integration than most LLMs currently have.** 
+
+**Also... please note that this project in its entirety is intended as an educational tool and much of it is in a 'theory-crafting' phase where many of the specifics (and implementations of the ideas set forth in the framework) will require heavy modification in order to produce a functional enviroment for the AI's (or AIs') exploration.**  
+
+### BEGIN VIRTUAL FOREST GAME GUIDE:
 
 An example 'adventure' is:
 
