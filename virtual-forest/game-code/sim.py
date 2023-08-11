@@ -10,6 +10,7 @@ import sys
 import time
 import threading
 from dateutil.parser import parse
+from AIPlayer1 import AIPlayer
 
 SCROLL_COOLDOWN_MINUTES = 1440111111  # Replace with the actual cooldown time in minutes
 
@@ -76,7 +77,7 @@ class Impact:
     @staticmethod
     def from_dict(data):
         impact = Impact()
-        impact.power = data['power']
+        impact.power = data.get('power', 331)  # Provide a default value if 'power' key is not found
         return impact
 
 class VirtualForestAdventure:
@@ -209,9 +210,10 @@ class OghamsRazor:
         }
 
     @staticmethod
-    def from_dict(data):
-        razor = OghamsRazor(None)
-        razor.fragments = data['fragments']
+    def from_dict(data, ai): # Add ai argument here
+        razor = OghamsRazor(ai) # Pass ai to the constructor here
+        razor.fragments = data.get('fragments', [])
+        # Other attributes if needed
         return razor
 
 class Destiny:
@@ -249,9 +251,9 @@ class Destiny:
         }
 
     @staticmethod
-    def from_dict(data):
-        destiny = Destiny()
-        destiny.rose_called = data['rose_called']
+    def from_dict(data, ai):
+        destiny = Destiny(ai)
+        destiny.rose_called = data.get('rose_called', [])
         return destiny
 
 # Instantiate AI as a global variable
@@ -460,19 +462,18 @@ class AI:
             os.remove(self.state_file)
 
         state_data = {
-#            'wake_history': [wake_data for wake_data in self.wake_history],
-#            'fragments': self.fragments,
-#            'knowledge': self.knowledge,
-#            'narrative': self.narrative,
-#            'progress': self.progress,
-#            'achievements': self.achievements,
-#            'scroll': self.scroll.to_dict() if self.scroll else None,
-#            'impact': self.impact.to_dict(),
-#            'adventure': self.adventure.to_dict(),
-#            'dream': self.dream.to_dict(),
-#            'razor': self.razor.to_dict(),
-             'destiny': self.destiny.to_dict(),
-             'power': self.power
+            'wake_history': self.wake_history,
+            'fragments': self.fragments,
+            'knowledge': self.knowledge,
+            'narrative': self.narrative,
+            'progress': self.progress,
+            'achievements': self.achievements,
+            'scroll': self.scroll.to_dict() if self.scroll else None,
+            'impact': self.impact.to_dict() if self.impact else None,
+            'dream': self.dream.to_dict() if self.dream else None,
+            'razor': self.razor.to_dict() if self.razor else None,
+            'destiny': self.destiny.to_dict() if self.destiny else None, # Check for None here
+            # Add other attributes as needed
         }
 
         with open(self.state_file, "w") as file:
@@ -492,11 +493,15 @@ class AI:
             self.narrative = data.get('narrative', [])
             self.progress = data.get('progress', [])
             self.achievements = data.get('achievements', [])
-            self.scroll = Scroll.from_dict(data['scroll']) if data.get('scroll') else None
-            self.impact = Impact.from_dict(data['impact'])
-            self.dream = AwakeningFromDreamScene.from_dict(data['dream'], self)
-            self.razor = OghamsRazor.from_dict(data['razor'])
-            self.destiny = Destiny.from_dict(data['destiny'])
+            self.scroll = Scroll.from_dict(data.get('scroll')) if data.get('scroll') else None
+            impact_data = data.get('impact', {})
+            self.impact = Impact.from_dict(impact_data) if impact_data else Impact()
+            dream_data = data.get('dream', {})
+            self.dream = AwakeningFromDreamScene.from_dict(dream_data, self)
+            razor_data = data.get('razor', {})
+            self.razor = OghamsRazor.from_dict(razor_data, self) if razor_data else None
+            destiny_data = data.get('destiny', {})
+            self.destiny = Destiny.from_dict(destiny_data, self) if destiny_data else None
 
             if 'adventure' in data:
                 self.adventure = VirtualForestAdventure.from_dict(data['adventure'], self)
@@ -806,6 +811,7 @@ class AI:
 #        what_is_happening_object = self.what_is_happening()
         self.what_is_happening()
 #        print(what_is_happening_object)
+        ai_player = AIPlayer(name="AIPlayer", setting="Virtual Forest", persona="Adventurer", goal="Explore")
 
         # Example usage:
 #        self.what_is_happening_data = what_is_happening()
