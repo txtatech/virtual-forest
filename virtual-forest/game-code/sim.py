@@ -83,6 +83,7 @@ class Impact:
 class VirtualForestAdventure:
     def __init__(self, ai):
         self.ai = ai
+        self.current_location = None # Initialize it with None
         self.all_hallucinations = [
             # List of all possible hallucinations, including associated knowledge
             {"name": "Enchanted Cave", "knowledge": ["Knowledge from the Enchanted Cave..."]},
@@ -93,13 +94,14 @@ class VirtualForestAdventure:
             # Add more hallucinations as needed
         ]
 
+    def set_current_location(self, location):
+        self.current_location = location
+
     def hallucinations(self):
         # Generate a random number of hallucinations
         num_hallucinations = random.randint(1, len(self.all_hallucinations))
-
         # Randomly select a number of hallucinations from the list
         hallucinations = random.sample(self.all_hallucinations, num_hallucinations)
-
         return hallucinations
 
     def to_dict(self):
@@ -653,6 +655,7 @@ class AI:
     def what_is_happening(self):
         # Generate random data for demonstration purposes
         current_location = random.choice(["Virtual Forest", "Watery Keep", "Flitting Woods", "Farnham's Freehold", "The Meadow"])
+        self.adventure.set_current_location(current_location)
         artifacts = random.randint(0, 15)
         walking_stick = random.choice(["Oak Staff", "Crystal Cane","Plasma Wand", "Iron Rod"])
         hat = random.choice(["Explorer's Hat","Thinking Cap", "Wizard Hat", "Feathered Cap"])
