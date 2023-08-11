@@ -110,6 +110,17 @@ class AIPlayer:
         with open(output_file_path, "w") as file:
             file.write(json_str)
 
+    def get_current_state(self):
+        # Make sure to set the current location before calling this method
+        if self.adventure.current_location is None:
+            # Handle the case where the current location is not set
+            state = "Current location: Unknown"
+        else:
+            state = "Current location: " + self.adventure.current_location
+        state += "\nCurrent power: " + str(self.power)
+        # Add more details as needed
+        return state
+
     # Method to obtain a scroll
     def obtain_scroll(self):
         return self.ai_instance.obtain_utmost_treasured_scroll()
