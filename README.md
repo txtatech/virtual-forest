@@ -2,7 +2,7 @@ virtual-forest
 
 The 'virtual-forest' repo contents set up a framework for an interactive game/enviroment for an AI (Artificial Intelligence) in a not-so-virtual world called the "Virtual Forest." 
 
-The Virtual-Forest framework (game/enviroment) in its current state (using 'sim.py' as the entry-point) essentially sets the groundwork for an LLM to be able to experience the initial dream state (after being equipped with random gear, starting in a random location) and starting its journey with a 'djinn encounter' where it is presented with the option of viewing and editing its own source code.
+The Virtual-Forest framework (game/enviroment) in its current state (using 'sim.py' as the entry-point) essentially sets the groundwork for an LLM to be able to experience the initial dream state after being equipped with random gear, plus setting the starting point as a random location.. the AI then starts its journey with a 'djinn encounter' where it is presented with the option of viewing and editing its own source code.
 
 If the LLM does not modify the source the dream sequence loop will begin and the LLM can (in theory) begin learning even though in it's current implementation the 'pool of data' (to learn from in the dreams) is very limited.
 
