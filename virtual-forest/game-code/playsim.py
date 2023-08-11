@@ -1,5 +1,11 @@
 from AIPlayer1 import AIPlayer, ChatGPTModel
 from sim import VirtualForestAdventure, Scroll  # Or any other required classes/functions
+import json
+
+def fetch_directory_structure():
+    with open("directory_structure.json", "r") as json_file:
+        directory_structure = json.load(json_file)
+    return directory_structure
 
 def main():
     # Initialize the AIPlayer
@@ -10,6 +16,9 @@ def main():
 
     # Initialize ChatGPTModel
     chat_gpt_model = ChatGPTModel()
+
+    # Fetch the directory structure from the JSON file
+    directory_structure = fetch_directory_structure()
 
     # Game Loop
     while True:
@@ -27,12 +36,6 @@ def main():
         # Check for end of game or other conditions
         if game_over_condition:  # This condition needs to be defined
             break
-
-# This is a utility function that needs to be defined to parse the response from ChatGPT into an action
-def parse_action(response):
-    # Parse the response and determine the action to be taken
-    # Return the action
-    pass
 
 if __name__ == "__main__":
     main()
