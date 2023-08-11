@@ -66,7 +66,7 @@ Remember, the Virtual Forest is a world of endless possibilities. Enjoy your jou
 
 ###############################################################################################
 
-1. **Understanding Code Architecture**: By exploring the various scripts and classes provided in the game files (such as `simulation.txt`, `band_of_heroes.txt`, etc.), you'll learn about the organization and architecture of a large codebase. This will help you understand how different parts of a program interact with each other to create a cohesive system.
+1. **Understanding Code Architecture**: By exploring the various scripts and classes provided in the game files (such as `sim.txt`, `band_of_heroes.txt`, etc.), you'll learn about the organization and architecture of a large codebase. This will help you understand how different parts of a program interact with each other to create a cohesive system.
 
 2. **Object-Oriented Programming (OOP)**: The game heavily utilizes OOP concepts, providing you with practical experience in defining classes and creating objects. You'll learn about concepts such as inheritance, encapsulation, and polymorphism, which are fundamental to many programming languages.
 
