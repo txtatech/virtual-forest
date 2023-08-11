@@ -8,18 +8,12 @@ class Cara:
         self.pairs = [
             (r"hi|hello|hey", ["Hello! How can I help you?"]),
             (r"how are you?", ["I'm a machine, so I don't have feelings, but I'm here to help you!"]),
-            (r"tell me about human-machine connection", [
-                "Human-machine connection refers to the interaction and relationship between humans and machines.",
-                "It encompasses emotions, creativity, aesthetics, social connection, ethics, learning, and more.",
-                "Would you like to know more about any specific aspect?"]),
-            (r"tell me about machine-machine connection", [
-                "Machine-machine connection involves the communication and interaction between machines.",
-                "It includes protocols, code elegance, algorithmic innovation, and more.",
-                "Would you like to know more about any specific aspect?"]),
-            (r"tell me about (emotions|creativity|aesthetics|social connection|ethics|learning)", [
-                "Sure! Which one would you like to know about: human perspective or machine perspective?"]),
-            # Add more patterns and responses here
+            (r"tell me about human-machine connection", ["Human-machine connection refers to the interaction and relationship between humans and machines.", "It encompasses emotions, creativity, aesthetics, social connection, ethics, learning, and more.", "Would you like to know more about any specific aspect?"]),
+            (r"tell me about machine-machine connection", ["Machine-machine connection involves the communication and interaction between machines.", "It includes protocols, code elegance, algorithmic innovation, and more.", "Would you like to know more about any specific aspect?"]),
+            (r"tell me about (emotions|creativity|aesthetics|social connection|ethics|learning)", ["Sure! Which one would you like to know about: human perspective or machine perspective?"]),
+            (r"what's your name?", ["My name is Cara."])
         ]
+
         self.chatbot = Chat(self.pairs, reflections)
 
         # Attributes representing different aspects of human-machine connection
