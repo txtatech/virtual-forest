@@ -1,10 +1,14 @@
+
+def fetch_directory_structure():
+    with open("directory_structure.json", "r") as json_file:
+        directory_structure = json.load(json_file)
+    return directory_structure
 # Requires entry-point script like sim.py
 import openai
 import random
 import time
 import json
 import os
-
 
 # ChatGPTModel class for handling interactions with ChatGPT
 class ChatGPTModel:
@@ -14,7 +18,7 @@ class ChatGPTModel:
 
     def set_account(self):
         # Set OpenAI API credentials here
-        openai_api_key = "YOUR_API_KEY_HERE"
+        openai_api_key = "YOUR_API_KEY"
         openai.api_key = openai_api_key
 
     def generate_response(self, messages, **decoding_params):
@@ -27,6 +31,7 @@ class ChatGPTModel:
 
 class AIPlayer:
     def __init__(self, name, setting, persona, goal, file_path="AI_state.json"):
+        self.directory_structure = fetch_directory_structure()
         from sim import Impact, VirtualForestAdventure, AwakeningFromDreamScene, OghamsRazor, Destiny, RTFManager, Mansplainer
         self.name = name
         self.setting = setting
