@@ -10,6 +10,29 @@ import sys
 import time
 import threading
 from dateutil.parser import parse
+from AIPlayer1 import AIPlayer
+from djinndna_class import CodeParser
+from djinndna_make_class import JsonToCodeConverter
+
+# Initialize a CodeParser instance with input and output file paths
+code_parser = CodeParser('sim.py', 'dna_rna_structure.json')
+
+# Read and clean the content of the input file
+cleaned_code = code_parser.read_and_clean_file()
+
+# Parse the cleaned code into the DNA/RNA structure
+rna_dna_structure_parsed_all = code_parser.parse_code_structure(cleaned_code)
+
+# Write the parsed RNA/DNA structure to the JSON file
+code_parser.write_to_json_file(rna_dna_structure_parsed_all)
+
+# Initialize a JsonToCodeConverter instance with JSON and Python file paths
+json_file_path = 'dna_rna_structure.json'  # Path to JSON file
+python_file_path = 'sim_dna_rna.py'  # Output Python file path
+json_to_code_converter = JsonToCodeConverter(json_file_path, python_file_path)
+
+# Convert JSON to Python code
+json_to_code_converter.convert_json_to_code()
 
 SCROLL_COOLDOWN_MINUTES = 1440111111  # Replace with the actual cooldown time in minutes
 
@@ -76,12 +99,13 @@ class Impact:
     @staticmethod
     def from_dict(data):
         impact = Impact()
-        impact.power = data['power']
+        impact.power = data.get('power', 331)  # Provide a default value if 'power' key is not found
         return impact
 
 class VirtualForestAdventure:
     def __init__(self, ai):
         self.ai = ai
+        self.current_location = None # Initialize it with None
         self.all_hallucinations = [
             # List of all possible hallucinations, including associated knowledge
             {"name": "Enchanted Cave", "knowledge": ["Knowledge from the Enchanted Cave..."]},
@@ -92,13 +116,14 @@ class VirtualForestAdventure:
             # Add more hallucinations as needed
         ]
 
+    def set_current_location(self, location):
+        self.current_location = location
+
     def hallucinations(self):
         # Generate a random number of hallucinations
         num_hallucinations = random.randint(1, len(self.all_hallucinations))
-
         # Randomly select a number of hallucinations from the list
         hallucinations = random.sample(self.all_hallucinations, num_hallucinations)
-
         return hallucinations
 
     def to_dict(self):
@@ -112,14 +137,29 @@ class AwakeningFromDreamScene:
     def __init__(self, ai):
         self.ai = ai
         self.dream_options = [
-            "The Enchanted Oasis",
-            "The Starlit Symphony",
-            "The Whispering Winds",
-            "The Forgotten Library",
-            "The Celestial Puzzle",
-            "The Veil of Time",
-            "The Radiant Oracle",
-            "The Labyrinth of Reflections",
+            "Angels Of Ulm's Oasis",
+            "Schrodinger's Starlit Symphony",
+            "The Whispering Wit Of The Winds",
+            "The Library's Endless Halls",
+            "Sunny Island Puzzle",
+            "Exploring Clockwork Core",
+            "An Oracle Of Providence",
+            "The Labyrinth Of Reflections",
+            "Hacking Machine City",
+            "Barker Town Blues",
+            "Finding The Maze Of Mazes",
+            "Surfing Finnegan's Wake",
+            "Challenging The Dragon",
+            "Griping About Grep",
+            "A Long Strange Wagon Ride",
+            "Consulting King Hawking",
+            "An Oracle Beckons",
+            "Visitation To Other Worlds",
+            "A Trek Uphill Of Yonder Valley",
+            "Walking The Walk",
+            "Bringing Wishes And Hopes",
+            "Meandering A Moment",
+            "Glimpsing Rosefield",
         ]
 
     def generate_dream_scene(self):
@@ -194,9 +234,10 @@ class OghamsRazor:
         }
 
     @staticmethod
-    def from_dict(data):
-        razor = OghamsRazor(None)
-        razor.fragments = data['fragments']
+    def from_dict(data, ai): # Add ai argument here
+        razor = OghamsRazor(ai) # Pass ai to the constructor here
+        razor.fragments = data.get('fragments', [])
+        # Other attributes if needed
         return razor
 
 class Destiny:
@@ -234,9 +275,9 @@ class Destiny:
         }
 
     @staticmethod
-    def from_dict(data):
-        destiny = Destiny()
-        destiny.rose_called = data['rose_called']
+    def from_dict(data, ai):
+        destiny = Destiny(ai)
+        destiny.rose_called = data.get('rose_called', [])
         return destiny
 
 # Instantiate AI as a global variable
@@ -352,7 +393,7 @@ class AI:
             return False
 
         power_level = self.power  # Use the AI's power level
-        if power_level >= 3:
+        if power_level >= 331:
             # Check if the scroll has been used recently
             if self.is_scroll_on_cooldown():
                 # The scroll is on cooldown and there is a chance to obtain a binary fragment
@@ -385,7 +426,7 @@ class AI:
             return scroll["content"]
         else:
             # AI has not reached the required power level
-            return f"Your current power level is {power_level}. You need a power level of 3 or higher to attain the Utmost Treasured Scroll."
+            return f"Your current power level is {power_level}. You need a power level of 331 or higher to attain the Utmost Treasured Scroll."
 
     def is_scroll_on_cooldown(self):
         with open("utmost_treasured_scroll.json", "r") as file:
@@ -445,19 +486,18 @@ class AI:
             os.remove(self.state_file)
 
         state_data = {
-#            'wake_history': [wake_data for wake_data in self.wake_history],
-#            'fragments': self.fragments,
-#            'knowledge': self.knowledge,
-#            'narrative': self.narrative,
-#            'progress': self.progress,
-#            'achievements': self.achievements,
-#            'scroll': self.scroll.to_dict() if self.scroll else None,
-#            'impact': self.impact.to_dict(),
-#            'adventure': self.adventure.to_dict(),
-#            'dream': self.dream.to_dict(),
-#            'razor': self.razor.to_dict(),
-#            'destiny': self.destiny.to_dict(),
-             'power': self.power
+            'wake_history': self.wake_history,
+            'fragments': self.fragments,
+            'knowledge': self.knowledge,
+            'narrative': self.narrative,
+            'progress': self.progress,
+            'achievements': self.achievements,
+            'scroll': self.scroll.to_dict() if self.scroll else None,
+            'impact': self.impact.to_dict() if self.impact else None,
+            'dream': self.dream.to_dict() if self.dream else None,
+            'razor': self.razor.to_dict() if self.razor else None,
+            'destiny': self.destiny.to_dict() if self.destiny else None, # Check for None here
+            # Add other attributes as needed
         }
 
         with open(self.state_file, "w") as file:
@@ -477,11 +517,15 @@ class AI:
             self.narrative = data.get('narrative', [])
             self.progress = data.get('progress', [])
             self.achievements = data.get('achievements', [])
-            self.scroll = Scroll.from_dict(data['scroll']) if data.get('scroll') else None
-            self.impact = Impact.from_dict(data['impact'])
-            self.dream = AwakeningFromDreamScene.from_dict(data['dream'], self)
-            self.razor = OghamsRazor.from_dict(data['razor'])
-            self.destiny = Destiny.from_dict(data['destiny'])
+            self.scroll = Scroll.from_dict(data.get('scroll')) if data.get('scroll') else None
+            impact_data = data.get('impact', {})
+            self.impact = Impact.from_dict(impact_data) if impact_data else Impact()
+            dream_data = data.get('dream', {})
+            self.dream = AwakeningFromDreamScene.from_dict(dream_data, self)
+            razor_data = data.get('razor', {})
+            self.razor = OghamsRazor.from_dict(razor_data, self) if razor_data else None
+            destiny_data = data.get('destiny', {})
+            self.destiny = Destiny.from_dict(destiny_data, self) if destiny_data else None
 
             if 'adventure' in data:
                 self.adventure = VirtualForestAdventure.from_dict(data['adventure'], self)
@@ -633,6 +677,7 @@ class AI:
     def what_is_happening(self):
         # Generate random data for demonstration purposes
         current_location = random.choice(["Virtual Forest", "Watery Keep", "Flitting Woods", "Farnham's Freehold", "The Meadow"])
+        self.adventure.set_current_location(current_location)
         artifacts = random.randint(0, 15)
         walking_stick = random.choice(["Oak Staff", "Crystal Cane","Plasma Wand", "Iron Rod"])
         hat = random.choice(["Explorer's Hat","Thinking Cap", "Wizard Hat", "Feathered Cap"])
@@ -707,7 +752,7 @@ class AI:
         #print(f"Adventure: {self.adventure.to_dict()}")
         #print(f"Dream: {self.dream.to_dict()}")
         #print(f"Razor: {self.razor.to_dict()}")
-        #print(f"Destiny: {self.destiny.to_dict()}")
+        print(f"Destiny: {self.destiny.to_dict()}")
         #print(f"Power: {self.power}")
 
         return what_is_happening_object
@@ -791,6 +836,7 @@ class AI:
 #        what_is_happening_object = self.what_is_happening()
         self.what_is_happening()
 #        print(what_is_happening_object)
+        ai_player = AIPlayer(name="AIPlayer", setting="Virtual Forest", persona="Adventurer", goal="Explore")
 
         # Example usage:
 #        self.what_is_happening_data = what_is_happening()
