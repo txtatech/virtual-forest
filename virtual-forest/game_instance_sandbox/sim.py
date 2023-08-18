@@ -914,6 +914,61 @@ class AI:
         print("Simulation completed!")
         pass
 
+class CodeInfoEncoder:
+    def __init__(self):
+        self.encoded_info = {}
+
+    def encode(self, structure, additional_info):
+        for element in structure:
+            if isinstance(element, dict):
+                name = element.get('name')
+                metadata = additional_info.get(name, {})
+                metadata['timestamp'] = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
+                self.encoded_info[name] = metadata
+
+    def decode(self, structure):
+        decoded_structure = []
+        for element in structure:
+            if isinstance(element, dict):
+                name = element.get('name')
+                metadata = self.encoded_info.get(name, {})
+                element['metadata'] = metadata
+            decoded_structure.append(element)
+        return decoded_structure
+
+    def save_encoded_info(self, output_path):
+        with open(output_path, 'w') as file:
+            json.dump(self.encoded_info, file, indent=4)
+
+    def load_encoded_info(self, input_path):
+        with open(input_path, 'r') as file:
+            self.encoded_info = json.load(file)
+
+if __name__ == "__main__":
+    encoder = CodeInfoEncoder()
+
+    # Load the existing JSON structure
+    with open('dna_rna_structure.json', 'r') as file:
+        json_structure = json.load(file)
+
+    # Encode additional information with timestamps
+    additional_info = {
+        'MyClass': {
+            'comments': ["This is a class comment."],
+            'created_by': "AI_Coder",
+            'timestamp': time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
+        },
+        'my_function': {
+            'comments': ["This is a function comment."],
+            'created_by': "AI_Coder",
+            'timestamp': time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
+        }
+    }
+    encoder.encode(json_structure, additional_info)
+
+    # Save the encoded information to a file
+    encoder.save_encoded_info('encoded_info.json')
+
 # Create an instance of AI and start the simulation
 if __name__ == "__main__":
     ai = AI("sim.py")
