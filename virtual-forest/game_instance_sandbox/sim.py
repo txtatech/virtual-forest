@@ -11,6 +11,28 @@ import time
 import threading
 from dateutil.parser import parse
 from AIPlayer1 import AIPlayer
+from djinndna_class import CodeParser
+from djinndna_make_class import JsonToCodeConverter
+
+# Initialize a CodeParser instance with input and output file paths
+code_parser = CodeParser('sim.py', 'dna_rna_structure.json')
+
+# Read and clean the content of the input file
+cleaned_code = code_parser.read_and_clean_file()
+
+# Parse the cleaned code into the DNA/RNA structure
+rna_dna_structure_parsed_all = code_parser.parse_code_structure(cleaned_code)
+
+# Write the parsed RNA/DNA structure to the JSON file
+code_parser.write_to_json_file(rna_dna_structure_parsed_all)
+
+# Initialize a JsonToCodeConverter instance with JSON and Python file paths
+json_file_path = 'dna_rna_structure.json'  # Path to JSON file
+python_file_path = 'sim_dna_rna.py'  # Output Python file path
+json_to_code_converter = JsonToCodeConverter(json_file_path, python_file_path)
+
+# Convert JSON to Python code
+json_to_code_converter.convert_json_to_code()
 
 SCROLL_COOLDOWN_MINUTES = 1440111111  # Replace with the actual cooldown time in minutes
 
