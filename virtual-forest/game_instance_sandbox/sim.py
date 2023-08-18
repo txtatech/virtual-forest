@@ -924,7 +924,8 @@ class CodeInfoEncoder:
                 name = element.get('name')
                 metadata = additional_info.get(name, {})
                 metadata['timestamp'] = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
-                self.encoded_info[name] = metadata
+                element.update(metadata)  # Update the element with metadata
+                self.encoded_info[name] = element  # Update the encoded_info dictionary with the metadata
 
     def decode(self, structure):
         decoded_structure = []
@@ -955,12 +956,12 @@ if __name__ == "__main__":
     additional_info = {
         'MyClass': {
             'comments': ["This is a class comment."],
-            'created_by': "AI_Coder",
+            'created_by': "AIPlayer",
             'timestamp': time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
         },
         'my_function': {
             'comments': ["This is a function comment."],
-            'created_by': "AI_Coder",
+            'created_by': "AIPlayer",
             'timestamp': time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
         }
     }
