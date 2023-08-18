@@ -10,7 +10,7 @@ Ideally the LLM should not remain in the dream and should read through this read
 
 Keep in mind that there is no one way to play (or exist) in the Virtual Forest and it is intended to be an open-ended framework to be adapted per the needs of the AI and/or human companion if there is one.
 
-**This repo moves both slow and fast. For the latest versions use 'virtual-forest':**
+**This repo moves fast. For the latest versions use 'virtual-forest':**
 
 https://github.com/txtatech/virtual-forest/tree/main/virtual-forest
 
@@ -10030,7 +10030,7 @@ Note: Developers can build upon this template by adding content, interactions, c
 
 ###############################################################################################
 
-'djinn_dna_class.py'
+'djinndna_class.py'
 
 ### CodeParser Class
 
@@ -10052,7 +10052,7 @@ The `CodeParser` class enhances the AI's journey by allowing it to delve into th
 
 ###############################################################################################
 
-'djinn_dna_make_class.py'
+'djinndna_make_class.py'
 
 ### JsonToCodeConverter Class
 
