@@ -5,7 +5,7 @@ CHECK THE GAME-CODE FOLDER FOR 'stable' VERSIONS!
 python3 sim.py
 
 
-SANDOX
+SANDBOX
 
 python3 djinnfluxer.py
 
