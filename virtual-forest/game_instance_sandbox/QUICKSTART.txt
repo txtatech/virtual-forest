@@ -1,1 +1,18 @@
+YOU ARE IN A MESSY SANDBOX! 
+
+CHECK THE GAME-CODE FOLDER FOR 'stable' VERSIONS!
+
 python3 sim.py
+
+
+SANDOX
+
+python3 djinnfluxer.py
+
+python3 djinnfluxer2.py
+
+python3 djinnfluxer_make.py
+
+python3 djinnfluxer_she_make.py
+
+python3 playsim_more.py
