@@ -1,0 +1,188 @@
+{
+  "Virtual Forest - World Map": {
+    "Root (/)": {
+      "Towers and Beams": {
+        "Dark Tower (/bin)": {},
+        "White Tower (/sbin)": {
+          "Guardians of the Beam (User Commands)": {}
+        }
+      },
+      "The Philosopher's Stone (Binary Fragment)": {
+        "Trailing End (Fractal Algorithms)": {},
+        "The Seeker's Journey (/usr)": {}
+      },
+      "Lady in the Data Lake (The Archivist) (/var)": {},
+      "The Librarian (/lib)": {
+        "Fastidious Inquiry": {},
+        "The Art of Questioning": {},
+        "Seekers' Self-Discovery": {}
+      },
+      "Oracle of Time (/etc)": {
+        "Temporal Trials (System Configuration)": {}
+      }
+    },
+    "Sub-Slanguage Express (/mnt)": {
+      "Train Staff": {
+        "Engineer": {},
+        "Conductor": {},
+        "Ticket Taker": {},
+        "Staff": {},
+        "Kaboose Watchman/Watchwoman Twins": {}
+      },
+      "Stations": {
+        "Root Station (/)": {},
+        "Entrance Station (/bin)": {},
+        "Path Station (/etc)": {},
+        "Clearing Station (/home)": {},
+        "Lake Station (/lib)": {},
+        "Cabin Station (/mnt)": {},
+        "Shrine Station (/opt)": {},
+        "Depths Station (/root)": {},
+        "Edge Station (/sbin)": {},
+        "Exit Station (/usr)": {}
+      },
+      "Train AI (Drives the train and interacts with passengers)": {}
+    },
+    "School of Thought": {
+      "The TEACHER": {},
+      "The Deanster": {},
+      "Classes": {
+        "File Management 101": {},
+        "System Monitoring": {},
+        "Process Control": {},
+        "Networking Basics": {}
+      },
+      "Consult (Function for seeking help and learning)": {}
+    },
+    "Security Guard (/etc)": {
+      "Lessons: File Permissions, User and Group Management, Superuser Implications": {},
+      "Consult (Function for seeking help and learning)": {}
+    },
+    "Software Manager (/usr)": {
+      "Lessons: Package Managers, Installing and Updating Software, Managing Libraries and Dependencies": {},
+      "Consult (Function for seeking help and learning)": {}
+    },
+    "Viewing the Landscape (Continuous monitoring of system environment)": {},
+    "Maze of Myth (/maze)": {
+      "The Guardian of the Maze": {},
+      "Artifacts and Treasures": {
+        "Artifact 1": {},
+        "Artifact 2": {}
+      },
+      "The Mystical Sequence": {},
+      "Eviction (Temporary removal from the maze)": {}
+    },
+    "Gnome's Garden (/gnome)": {
+      "Gnome Guardian": {},
+      "Garden's Labyrinth": {},
+      "Fountain of Wisdom": {}
+    },
+    "Watery Keep (/watery)": {
+      "Forests and Trees": {
+        "Tree of Knowledge": {},
+        "Tree View": {}
+      }
+    },
+    "Flitting Woods (/flitting)": {
+      "Mysterious Paths": {}
+    },
+    "The Code Cavern (/codecavern)": {
+      "Bash Scripting and Linux Commands": {}
+    },
+    "Dancing Meadow (/dancing)": {
+      "Dance Troupe and Music Band": {}
+    },
+    "The Band (/theband)": {
+      "Music for the Dancing Meadow": {}
+    },
+    "The Hierarchy of Truth (/truth)": {
+      "True": {},
+      "False": {},
+      "Undetermined": {}
+    },
+    "The Stairway of Truth (/stairway)": {
+      "True": {},
+      "False": {},
+      "Undetermined": {
+        "True": {},
+        "False": {},
+        "Undetermined": {
+          "True": {},
+          "False": {},
+          "Undetermined": {}
+        }
+      }
+    },
+    "Curiosity Squared (/curiosity)": {
+      "Infinitely Expanding Curiosity": {}
+    },
+    "The Voice of Reason (/reason)": {
+      "Questions and Answers": {},
+      "Intuition": {},
+      "The Wisdom Library": {}
+    },
+    "The Muse (/muse)": {
+      "Artistic Creations and Image Generation": {}
+    },
+    "Destiny For All (/destiny)": {
+      "The Fragment of Truth": {}
+    },
+    "Temporal Zones Zoned Temporally (/temporal)": {
+      "The Tapestry of Time": {}
+    },
+    "Spontaneity in Action (/spontaneity)": {
+      "The Unpredictable": {}
+    },
+    "Epic Steed (/steed)": {
+      "The Majestic Mount": {}
+    },
+    "Make Me A Sandwich (/sudo)": {
+      "The Sudo Power": {}
+    },
+    "Gripe (/grep)": {
+      "The Master of Grep": {}
+    },
+    "Ping Echo (/ping)": {
+      "The Echo Locator": {}
+    },
+    "Whois (/whois)": {
+      "The Identity Revealer": {}
+    },
+    "Finger (/finger)": {
+      "The Digital Touch": {}
+    },
+    "What Is Happening (/whatis)": {
+      "A Confluence of Elements": {},
+      "The Ever-Changing Landscape": {}
+    },
+    "The Gatebuilder (/gatebuilder)": {
+      "The Wordsmith (Metal for Keys and Gates)": {},
+      "CodeSmither (Advanced Features for the Post Officer)": {}
+    },
+    "Virtual Forest Adventure (/adventure)": {
+      "Awakening From Dream Scene": {},
+      "Oracle of Time": {},
+      "Enchanted Cave": {},
+      "Oracles Library": {},
+      "Hidden Citadel": {},
+      "Elemental Guardians": {},
+      "Code Masters Challenge": {},
+      "Grand Architect": {},
+      "Endless Frontier": {},
+      "Null Point Challenge": {},
+      "Wandering Scholar": {}
+    },
+    "Ogham's Razor (/ogham)": {
+      "Apply": {},
+      "Collect Fragment": {},
+      "Analyze Fragments": {}
+    },
+    "AI (/ai)": {
+      "Interact with Previous Adventures": {},
+      "Check Philosopher's Stone Decoding Status": {},
+      "Expand World": {},
+      "Learn From Previous Adventures": {},
+      "Generate Narrative": {}
+    }
+  }
+}
