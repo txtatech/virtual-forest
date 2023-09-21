@@ -2,8 +2,19 @@ YOU ARE IN A MESSY SANDBOX!
 
 CHECK THE GAME-CODE FOLDER FOR 'stable' VERSIONS!
 
+The latest test version of the sim.py entry point and the DNA encoding framework source files are in 'game_instance_sandbox/djinn-dna':
+
+https://github.com/txtatech/virtual-forest/tree/main/virtual-forest/game_instance_sandbox/djinn-dna
+
 python3 sim.py
 
+or
+
+python3 playsim_more.py
+
+or
+
+playsim_template.py
 
 SANDBOX
 
