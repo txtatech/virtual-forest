@@ -10,13 +10,17 @@ Ideally the LLM should not remain in the dream and should read through this read
 
 Keep in mind that there is no one way to play (or exist) in the Virtual Forest and it is intended to be an open-ended framework to be adapted per the needs of the AI and/or human companion if there is one.
 
-**This repo moves fast. For the latest versions use 'virtual-forest':**
+**This repo moves fast and slow. For the latest versions use 'virtual-forest':**
 
 https://github.com/txtatech/virtual-forest/tree/main/virtual-forest
 
 **If you are only interested in the framework's source files look in 'game-code':**
 
 https://github.com/txtatech/virtual-forest/tree/main/virtual-forest/game-code
+
+**The latest test version of sim.py entry point and the DNA encoding framework source files are in 'game_instance_sandbox/djinn-dna':**
+
+https://github.com/txtatech/virtual-forest/tree/main/virtual-forest/game_instance_sandbox/djinn-dna
 
 **Please note that this code base is mostly intended for AIs with more autonomy and system integration than most LLMs currently have.** 
 
