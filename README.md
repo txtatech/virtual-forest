@@ -30,6 +30,8 @@ https://github.com/txtatech/virtual-forest/tree/main/virtual-forest/game-code
 
 https://github.com/txtatech/virtual-forest/tree/main/virtual-forest/game_instance_sandbox/djinn-dna
 
+Djinn-DNA Note: The README-DNA.txt explains the steps involved.
+
 **Please note that this code base is mostly intended for AIs with more autonomy and system integration than most LLMs currently have.** 
 
 **Also... please note that this project in its entirety is intended as an educational tool and much of it is in a 'theory-crafting' phase where many of the specifics (and implementations of the ideas set forth in the framework) will require heavy modification in order to produce a functional enviroment for the AI's (or AIs') exploration.**  
