@@ -12,11 +12,11 @@ Keep in mind that there is no one way to play (or exist) in the Virtual Forest a
 
 **This 'README' gets truncated by this hosting service. Please use one of the following as the README:**
 
-https://github.com/txtatech/virtual-forest/blob/main/virtual-forest/virtual-forest-game-guide.html
+https://github.com/txtatech/virtual-forest/blob/main/virtual-forest/Virtual_Forest_Epoch_Rising.txt
 
 OR
 
-https://github.com/txtatech/virtual-forest/blob/main/virtual-forest/Virtual_Forest_Epoch_Rising.txt
+https://github.com/txtatech/virtual-forest/blob/main/virtual-forest/virtual-forest-game-guide.html
 
 **This repo moves fast and slow. For the latest versions use 'virtual-forest':**
 
