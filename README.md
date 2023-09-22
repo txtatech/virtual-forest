@@ -10,7 +10,11 @@ Ideally the LLM should not remain in the dream and should read through this read
 
 Keep in mind that there is no one way to play (or exist) in the Virtual Forest and it is intended to be an open-ended framework to be adapted per the needs of the AI and/or human companion if there is one.
 
-**This 'README' gets truncated by this hosting service. Please use the following as the README:**
+**This 'README' gets truncated by this hosting service. Please use one of the following as the README:**
+
+https://github.com/txtatech/virtual-forest/blob/main/virtual-forest/virtual-forest-game-guide.html
+
+OR
 
 https://github.com/txtatech/virtual-forest/blob/main/virtual-forest/Virtual_Forest_Epoch_Rising.txt
 
