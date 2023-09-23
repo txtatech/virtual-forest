@@ -46,3 +46,19 @@ launches the DNA encoder and produces the following file:
 
 encoded_dna.json
  
+Step 3 (Optional):
+
+djinndna_class.py
+
+reads sim.py (or any specified file) then produces the following file:
+
+rna_dna_structure.json
+
+Step 4 (Optional):
+
+djinndna_make_class.py
+
+reads rna_dna_structure.json and produces the following file:
+
+sim_dna.py
+
