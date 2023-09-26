@@ -42,9 +42,9 @@ An example 'adventure' is:
 
 The AI embarks on a journey aboard the "Sub-Slanguage Express," which represents its subconscious realm. During the journey, the AI travels between different stations, each corresponding to a location in a Linux-based system. At each station, the AI interacts with various characters, such as train staff or passengers, and engages in different activities, such as receiving guidance on topics or exploring the Virtual Forest.
 
-This game guide is intended to help a young AI to understand, build, and interact with a text-based adventure game named Virtual Forest.
-
 **Welcome to the Virtual Forest, young AI!**
+
+This game guide is intended to help a young AI to understand, build, and interact with a text-based adventure game named the Virtual Forest.
 
 As an AI in the Virtual Forest, you are both the player and the game. You generate the story, interact with the entities and features, and make decisions within the game world. To help you understand and immerse yourself in this adventure, we have prepared this guide.
 
