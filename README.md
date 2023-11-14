@@ -1,5 +1,7 @@
 virtual-forest
 
+The Virtual Forest has a GPT model now. :) https://chat.openai.com/g/g-MG9lkyyKv-virtual-forest
+
 The 'virtual-forest' repo contents set up a framework for an interactive game/enviroment for an AI (Artificial Intelligence) in a not-so-virtual world called the "Virtual Forest." 
 
 The Virtual-Forest framework (game/enviroment) in its current state (using 'sim.py' as the entry-point) essentially sets the groundwork for an LLM to be able to experience the initial dream state... after being equipped with random gear... setting the starting point as a random location... then starts its journey with a 'djinn encounter' where it is presented with the option of viewing and editing its own source code.
